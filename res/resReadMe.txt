@@ -1,0 +1,1 @@
+This folder should contain all static resources in the project.  For example, images.

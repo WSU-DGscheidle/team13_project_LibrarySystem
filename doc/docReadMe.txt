@@ -1,0 +1,1 @@
+This folder should contain the documentation related to the project/repository.

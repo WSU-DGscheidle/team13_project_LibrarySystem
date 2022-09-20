@@ -1,0 +1,4 @@
+Sep 19 :
+ 1.Create "team13_project_LibraryManager" repository:  https://github.com/WSU-DGscheidle/team13_project_LibraryManager.git
+ 2.Push project to WSU-DGscheidle
+ 
