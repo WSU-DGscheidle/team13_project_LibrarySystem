@@ -64,4 +64,19 @@ public class BookDao {
 	}
 	
 	
+        /**
+	 * 
+	 * @param con
+	 * @param book
+	 * @return a book instance
+	 * @throws Exception
+	 */
+	public static  Book returnBook(Connection con,Book book)throws Exception{
+		//add more codes here
+		Book resultBook=null;
+		
+		return null;
+	}
+	
+	
 }//
