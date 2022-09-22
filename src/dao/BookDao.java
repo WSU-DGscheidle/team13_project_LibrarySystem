@@ -21,7 +21,8 @@ public class BookDao {
 	 * Add a book
 	 * @param con
 	 * @param book
-	 * @return 1 or 0 (1: add success; 2: add fail)
+	 * @return 1:  success
+	 *         0:  fail
 	 * @throws Exception
 	 * r 
 	 */
@@ -37,7 +38,8 @@ public class BookDao {
 	 * 
 	 * @param con
 	 * @param book
-	 * @return
+	 * @return 1:  success
+	 *         0:  fail
 	 * @throws Exception
 	 * 
 	 * @author 
@@ -53,7 +55,8 @@ public class BookDao {
 	 * 
 	 * @param con
 	 * @param book
-	 * @return
+         * @return 1:  success
+	 *         0:  fail
 	 * @throws Exception
 	 * 
 	 * @author 
