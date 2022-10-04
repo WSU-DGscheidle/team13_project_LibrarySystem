@@ -2,3 +2,7 @@ Sep 19 :
  1.Create "team13_project_LibraryManager" repository:  https://github.com/WSU-DGscheidle/team13_project_LibraryManager.git
  2.Push project to WSU-DGscheidle
  
+ 
+ Oct 4 to Oct 6：
+ Re-create a new database due to the lost of the old one
+ 
