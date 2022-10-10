@@ -16,7 +16,7 @@ public class StringUtility {
 	 */
 	public static boolean isNull(String str ){
 		//add more codes
-		return false;    
+		return str == null;    
 				
 	}
 	
@@ -29,7 +29,7 @@ public class StringUtility {
 	 */
 	public static boolean isEmpty(String str) {	
 		//add more codes
-		return false;
+		return (str.isEmpty() || str.isBlank());
 	}
 	
 }//class
