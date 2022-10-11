@@ -4,7 +4,7 @@ package model;
 public class Book {
 
 	private String bookName;
-	private String bookID;
+	private int bookID;
 	private int isAvailable;    //if a book is available isAvailable == 1 , if not isAvailable == 0
 	private String lendTo; 
 	
@@ -13,14 +13,14 @@ public class Book {
 		super();
 	}
 	
-	public Book(String bookName,String bookID, int isAvailable,String lendTo) {
+	public Book(String bookName,int bookID, int isAvailable,String lendTo) {
 		this.bookName = bookName;
 		this.bookID = bookID; 
 		this.isAvailable = isAvailable;
 		this.lendTo = lendTo;			
 	}
 	
-	//getter & setter(Alt+Shift+S)
+	
 	public String getBookName() {
 		return bookName;
 	}
@@ -29,11 +29,11 @@ public class Book {
 		this.bookName = bookName;
 	}
 
-	public String getBookID() {
+	public int getBookID() {
 		return bookID;
 	}
 
-	public void setBookID(String bookID) {
+	public void setBookID(int bookID) {
 		this.bookID = bookID;
 	}
 
