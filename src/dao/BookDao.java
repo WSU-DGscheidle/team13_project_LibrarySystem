@@ -4,8 +4,9 @@ import java.awt.print.Book;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+import model.Books;
 import model.User;
+import utility_public.DataBaseUtility;
 
 
 /**
@@ -26,7 +27,7 @@ public class BookDao {
 	 * @throws Exception
 	 * r 
 	 */
-	public static int add(Connection con,Book book)throws Exception{		
+	public static int add(Connection con,Books book)throws Exception{		
 		//add more codes here
 		return  1;
 				
@@ -44,7 +45,7 @@ public class BookDao {
 	 * 
 	 * @author 
 	 */
-	public static int delete(Connection con,Book book)throws Exception{
+	public static int delete(Connection con,Books book)throws Exception{
 		//add more codes here
 		return 1;	
 	}
@@ -61,7 +62,7 @@ public class BookDao {
 	 * 
 	 * @author 
 	 */
-	public static int update(Connection con,Book book)throws Exception{
+	public static int update(Connection con,Books book)throws Exception{
 		//add more codes here
 		return 1;
 	}
@@ -74,12 +75,51 @@ public class BookDao {
 	 * @return a book instance
 	 * @throws Exception
 	 */
-	public static  Book returnBook(Connection con,Book book)throws Exception{
+	public static  Books returnBook(Connection con,Books book)throws Exception{
 		//add more codes here
-		Book resultBook=null;
+		Books resultBook=null;
+		String sql="select * from t_book where bookID=? bookName=? isAvailable=? lendTo=?";
+		PreparedStatement pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, book.getBookID());
+		pstmt.setString(2, book.getBookName());
+		pstmt.setInt(3, book.isAvailable());
+		pstmt.setString(4, book.getLendTo());
 		
-		return null;
+		ResultSet rs=pstmt.executeQuery();
+		
+		while(rs.next()) {
+			resultBook = new Books();
+			resultBook.setBookID(rs.getInt("bookID"));
+			resultBook.setBookName(rs.getString("bookName"));
+			resultBook.setAvailable(rs.getInt("isAvailable"));
+			resultBook.setLendTo(rs.getString("lendTo"));
+		}
+		
+		
+		return resultBook;
 	}
 	
 	
+	//Temp test
+	public static void main(String[] args) {
+		Books abook = new Books();
+		DataBaseUtility dbUtil = new DataBaseUtility(); 
+		Connection con = null; 
+		try {
+			con =dbUtil.getCon();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			Books currentBook = BookDao.returnBook(con, abook);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 	
+	}
+
+
+
 }//
