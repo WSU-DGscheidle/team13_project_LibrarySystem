@@ -5,7 +5,7 @@ public class Book {
 
 	private String bookName;
 	private String bookID;
-	private boolean isAvailable;
+	private int isAvailable;    //if a book is available isAvailable == 1 , if not isAvailable == 0
 	private String lendTo; 
 	
 	//non-parameter constructor
@@ -13,7 +13,7 @@ public class Book {
 		super();
 	}
 	
-	public Book(String bookName,String bookID, boolean isAvailable,String lendTo) {
+	public Book(String bookName,String bookID, int isAvailable,String lendTo) {
 		this.bookName = bookName;
 		this.bookID = bookID; 
 		this.isAvailable = isAvailable;
@@ -37,11 +37,11 @@ public class Book {
 		this.bookID = bookID;
 	}
 
-	public boolean isAvailable() {
+	public int isAvailable() {
 		return isAvailable;
 	}
 
-	public void setAvailable(boolean isAvailable) {
+	public void setAvailable(int isAvailable) {
 		this.isAvailable = isAvailable;
 	}
 
