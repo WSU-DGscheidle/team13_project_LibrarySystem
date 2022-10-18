@@ -37,7 +37,7 @@ public class Books {
 		this.bookID = bookID;
 	}
 
-	public int isAvailable() {
+	public int getAvailable() {
 		return isAvailable;
 	}
 
