@@ -1,5 +1,11 @@
 package model;
 
+
+/**
+ * This is a class for User,it has 2 member data and some getter and setter methods.
+ * @author Caihong
+ * 
+ */
 public class User {
 
 	private String userName;
