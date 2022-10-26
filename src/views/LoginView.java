@@ -19,14 +19,20 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-//-----------------------------
 import model.User;
 import utility_public.DataBaseUtility;
 import utility_public.StringUtility;
 import dao.UserDao;
-//-----------------------------
 
 
+/**
+ * 
+ *This Class is the Login User Interface. It takes in Login User's username and password,
+ *connect to the online database if the given username and password match.
+ *
+ * @author Caihong
+ * 
+ */
 public class LoginView extends JFrame {
 
 	private JPanel contentPane;
