@@ -48,7 +48,7 @@ public class LoginView extends JFrame {
 			}
 		});
 	}
-
+	///Test Comment
 	/**
 	 * Create the frame.
 	 */
