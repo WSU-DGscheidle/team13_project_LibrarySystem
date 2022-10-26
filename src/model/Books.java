@@ -1,6 +1,12 @@
 package model;
 
 
+/**
+ * This is a class for book,it has 4 member data and some getter and setter methods.
+ * @author Caihong
+ * 
+ */
+
 public class Books {
 
 	private String bookName;
@@ -20,6 +26,11 @@ public class Books {
 		this.lendTo = lendTo;			
 	}
 	
+	public Books(String bookName, int isAvailable,String lendTo) {
+		this.bookName = bookName;
+		this.isAvailable = isAvailable;
+		this.lendTo = lendTo;			
+	}
 	
 	public String getBookName() {
 		return bookName;
