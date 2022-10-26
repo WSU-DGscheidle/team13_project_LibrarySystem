@@ -14,7 +14,7 @@ import utility_public.DataBaseUtility;
  * in communicating with the online MySQL database and manipulating data within the database.
  * @author Caihong
  * 
- * */
+ */
 public class BookDao {
 	
 	/**
@@ -34,8 +34,7 @@ public class BookDao {
 		pstmt.setInt(2, book.getAvailable());
 		pstmt.setString(3, book.getLendTo());
 	
-		return pstmt.executeUpdate();
-				
+		return pstmt.executeUpdate();			
 	}
 
 	
@@ -63,8 +62,6 @@ public class BookDao {
 	 * @param bookName
 	 * @return 1:  success 0: fail         
 	 * @throws Exception
-	 * 
-	 * @author 
 	 */
 	//URL:alvinalexander.com/java/java-mysql-update-query-example/
 	public static int update_isAvailable(Connection con,int availableStatus,String bookName)throws Exception{
