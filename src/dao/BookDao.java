@@ -10,54 +10,57 @@ import utility_public.DataBaseUtility;
 
 
 /**
- * Mysql database name: sql5520691
- * Mysql table name: t_book
- * bookID (dataTpye: int; primary key)
- * bookName (dataTpye: String)
- * isAvailable (dataTpye: int; 1 is available, 0 is not available)
- * lendTo (dataTpye: String; the person's name)
- * 
+ * The purpose of this class is to assist UserView and AdminView
+ * in communicating with the online MySQL database and manipulating data within the database.
  * @author Caihong
- *
- */
+ * 
+ * */
 public class BookDao {
 	
 	/**
-	 * Add a book
+	 * Add a book to the database
 	 * @param con
 	 * @param book
-	 * @return 1:  success 0:  fail  
+	 * @return 1:  success 
+	 *         0:  fail  
 	 * @throws Exception
-	 * r 
+	 * 
 	 */
-	public static int add(Connection con,Books book)throws Exception{		
-		//add more codes here
-		return  1;
+	public static int add(Connection con,Books book)throws Exception{
+		
+		String sql="insert into t_book values(null,?,?,?)";
+		PreparedStatement pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, book.getBookName());
+		pstmt.setInt(2, book.getAvailable());
+		pstmt.setString(3, book.getLendTo());
+	
+		return pstmt.executeUpdate();
 				
 	}
 
 	
-	
 	/**
-	 * 
+	 * delete a book from the database by passing bookId as parameter
 	 * @param con
-	 * @param book
-	 * @return 1:  success 0: fail        
+	 * @param id
+	 * @return 1:  success 
+	 *         0:  fail  
 	 * @throws Exception
 	 * 
-	 * @author 
 	 */
-	public static int delete(Connection con,Books book)throws Exception{
-		//add more codes here
-		return 1;	
+	public static int delete_byID(Connection con,int id)throws Exception{
+		String sql="delete from t_book where bookID=?";
+		PreparedStatement pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, id);
+		return pstmt.executeUpdate();
+		
 	}
 	
-	
-	
 	/**
-	 * Change a book's available status with given bookName
+	 * Change a book's available status('1' indicate available, '0' indicate not available) with given bookName
 	 * @param con
-	 * @param book
+	 * @param int availableStatus
+	 * @param bookName
 	 * @return 1:  success 0: fail         
 	 * @throws Exception
 	 * 
@@ -77,7 +80,7 @@ public class BookDao {
 	/**
 	 * Return total numbers of books in the t_book table in the database
 	 * @param con
-	 * @return
+	 * @return totalNum
 	 * @throws Exception
 	 */
 	//URL:tutorialspoint.com/how-to-count-rows-count-and-java#:~:text=The%20SQL%20Count()%20function,of%20rows%20in%20a%20table.
@@ -94,12 +97,12 @@ public class BookDao {
 	}
 	
 	
-     /**
-	 * 
+	/**
+	 * Return a book instance by given book id
 	 * @param con
 	 * @param id
-	 * @return a book instance with given book ID
-	 * @throws Exception 
+	 * @return book
+	 * @throws Exception
 	 */
 	public static  Books returnBook(Connection con,int id)throws Exception{
 		//add more codes here
@@ -127,10 +130,10 @@ public class BookDao {
 	
 	DataBaseUtility dbUtil = new DataBaseUtility(); 
 	Connection con = dbUtil.getCon(); 	
-        BookDao.returnBook(con, 1).getBookName();
+    //BookDao.returnBook(con, 1).getBookName();
         
-        //Test: returnBook   Pass!
-        //System.out.println(BookDao.returnBook(con, 1).getBookName());
+    //Test: returnBook   Pass!
+    // System.out.println(BookDao.returnBook(con, 1).getBookName());
 	     
 	//Test: getTotalNum  Pass!
 	//System.out.println(BookDao.getTotalNum(con));
@@ -138,11 +141,13 @@ public class BookDao {
 	//Test: update_isAvailable Pass!
 	//System.out.println("update_isAvailable success ? " + BookDao.update_isAvailable( con,0,"Harry Potter 1")  );
 	
-
+    //Test: add(Connection con,Books book)  Pass!
+	//Books newBook = new Books("TestBook1", 1,"Jim");
+	//System.out.print( BookDao.add(con, newBook) );
+	
+	//Test: delete_byID(Connection con,int id) Pass!
+	//System.out.print( BookDao.delete_byID(con, 13)); //delete testBook1
+	
   }
 	
-
-     
-
-
 }//
