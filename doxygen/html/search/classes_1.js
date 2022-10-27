@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['databaseutility_0',['DataBaseUtility',['../classutility__public_1_1_data_base_utility.html',1,'utility_public']]]
+  ['bookdao_0',['BookDao',['../classdao_1_1_book_dao.html',1,'dao']]],
+  ['books_1',['Books',['../classmodel_1_1_books.html',1,'model']]]
 ];

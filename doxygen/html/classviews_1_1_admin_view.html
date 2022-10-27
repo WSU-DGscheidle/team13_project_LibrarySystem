@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Library System: dao.UserDao Class Reference</title>
+<title>Library System: views.AdminView Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,30 +69,59 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacedao.html">dao</a></li><li class="navelem"><a class="el" href="classdao_1_1_user_dao.html">UserDao</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceviews.html">views</a></li><li class="navelem"><a class="el" href="classviews_1_1_admin_view.html">AdminView</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="classdao_1_1_user_dao-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">dao.UserDao Class Reference</div></div>
+<a href="classviews_1_1_admin_view-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">views.AdminView Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for views.AdminView:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classviews_1_1_admin_view.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a35020f5f2bd0f60f97c123de86f4bdfe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviews_1_1_admin_view.html#a35020f5f2bd0f60f97c123de86f4bdfe">AdminView</a> ()</td></tr>
+<tr class="separator:a35020f5f2bd0f60f97c123de86f4bdfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ab70095363b06e2491dcf52096903d88c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmodel_1_1_user.html">User</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_user_dao.html#ab70095363b06e2491dcf52096903d88c">login</a> (Connection con, <a class="el" href="classmodel_1_1_user.html">User</a> user)  throws Exception</td></tr>
-<tr class="separator:ab70095363b06e2491dcf52096903d88c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed6e8c05a75c4935ba40613a0ec52438"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviews_1_1_admin_view.html#aed6e8c05a75c4935ba40613a0ec52438">main</a> (String[] args)</td></tr>
+<tr class="separator:aed6e8c05a75c4935ba40613a0ec52438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >This Class is a "Data Access Object" shorts for DAO, it only have one method "login" which takes in an instance of connection and an instance of user to connect with MySql database and return a User instance.</p>
-<p >Online Database Information: Mysql database name: ZHB1hpTWfE Host: sql5.freesqldatabase.com Database name: sql5520691 Database user: sql5520691 Database password: XBmgbLjYuM</p>
-<p >Tables: (1)t_book (2)t_user</p>
-<dl class="section author"><dt>Author</dt><dd>Caihong </dd></dl>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab70095363b06e2491dcf52096903d88c" name="ab70095363b06e2491dcf52096903d88c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab70095363b06e2491dcf52096903d88c">&#9670;&#160;</a></span>login()</h2>
+<div class="textblock"><p >This Class is the Administrator View Interface. It display the list of all books in the library after the Administrator login in. It allows the Administrator to add,delete and edit book's information.</p>
+<dl class="section author"><dt>Author</dt><dd>Skyler </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a35020f5f2bd0f60f97c123de86f4bdfe" name="a35020f5f2bd0f60f97c123de86f4bdfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35020f5f2bd0f60f97c123de86f4bdfe">&#9670;&#160;</a></span>AdminView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">views.AdminView.AdminView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Create the frame. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aed6e8c05a75c4935ba40613a0ec52438" name="aed6e8c05a75c4935ba40613a0ec52438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed6e8c05a75c4935ba40613a0ec52438">&#9670;&#160;</a></span>main()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -101,21 +130,11 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="classmodel_1_1_user.html">User</a> dao.UserDao.login </td>
+          <td class="memname">static void views.AdminView.main </td>
           <td>(</td>
-          <td class="paramtype">Connection&#160;</td>
-          <td class="paramname"><em>con</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">String[]&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classmodel_1_1_user.html">User</a>&#160;</td>
-          <td class="paramname"><em>user</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> throws Exception</td>
         </tr>
       </table>
   </td>
@@ -124,28 +143,12 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Login Verification </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">con</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>user </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<p >&lt; It returns an instance of ResultSet when a select query is executed.</p>
-<p >&lt; Change set result accordingly by passing a created user and u</p>
-<p >&lt; A ResultSet is a Java object that contains the results of executing an SQL query. In other words, it contains the rows that satisfy the conditions of the query. <br  />
-</p>
+<p >Launch the application. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Eclipse_Workspace/team13_project_LibrarySystem/src/dao/<a class="el" href="_user_dao_8java.html">UserDao.java</a></li>
+<li>Eclipse_Workspace/team13_project_LibrarySystem/src/views/<a class="el" href="_admin_view_8java.html">AdminView.java</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -84,8 +84,8 @@ $(function() {
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a8e21ff4bb2ea228576f3a86e11cbaa"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a1a8e21ff4bb2ea228576f3a86e11cbaa">add</a> (Connection con, <a class="el" href="classmodel_1_1_books.html">Books</a> book)  throws Exception</td></tr>
 <tr class="separator:a1a8e21ff4bb2ea228576f3a86e11cbaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27b83b601c3af9e2ac5fbe3dd81e078b"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a27b83b601c3af9e2ac5fbe3dd81e078b">delete</a> (Connection con, <a class="el" href="classmodel_1_1_books.html">Books</a> book)  throws Exception</td></tr>
-<tr class="separator:a27b83b601c3af9e2ac5fbe3dd81e078b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cebb5de45b205893bed972e2780302d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a4cebb5de45b205893bed972e2780302d">delete_byID</a> (Connection con, int id)  throws Exception</td></tr>
+<tr class="separator:a4cebb5de45b205893bed972e2780302d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad690cd616453ead88691958bd4da651d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#ad690cd616453ead88691958bd4da651d">update_isAvailable</a> (Connection con, int availableStatus, String bookName)  throws Exception</td></tr>
 <tr class="separator:ad690cd616453ead88691958bd4da651d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a741c66d483163348105309775519bf38"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a741c66d483163348105309775519bf38">getTotalNum</a> (Connection con)  throws Exception</td></tr>
@@ -96,8 +96,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:ad378a25086e839559c8a295ef1463fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Mysql database name: sql5520691 Mysql table name: t_book bookID (dataTpye: int; primary key) bookName (dataTpye: String) isAvailable (dataTpye: int; 1 is available, 0 is not available) lendTo (dataTpye: String; the person's name)</p>
-<dl class="section author"><dt>Author</dt><dd>Caihong </dd></dl>
+<div class="textblock"><p >The purpose of this class is to assist UserView and AdminView in communicating with the online MySQL database and manipulating data within the database. </p><dl class="section author"><dt>Author</dt><dd>Caihong </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1a8e21ff4bb2ea228576f3a86e11cbaa" name="a1a8e21ff4bb2ea228576f3a86e11cbaa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1a8e21ff4bb2ea228576f3a86e11cbaa">&#9670;&#160;</a></span>add()</h2>
@@ -132,58 +131,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Add a book </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">con</td><td></td></tr>
-    <tr><td class="paramname">book</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>1: success 0: fail <br  />
- </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>r </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a27b83b601c3af9e2ac5fbe3dd81e078b" name="a27b83b601c3af9e2ac5fbe3dd81e078b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27b83b601c3af9e2ac5fbe3dd81e078b">&#9670;&#160;</a></span>delete()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static int dao.BookDao.delete </td>
-          <td>(</td>
-          <td class="paramtype">Connection&#160;</td>
-          <td class="paramname"><em>con</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classmodel_1_1_books.html">Books</a>&#160;</td>
-          <td class="paramname"><em>book</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> throws Exception</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p >Add a book to the database </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
     <tr><td class="paramname">book</td><td></td></tr>
@@ -198,7 +146,57 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a4cebb5de45b205893bed972e2780302d" name="a4cebb5de45b205893bed972e2780302d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cebb5de45b205893bed972e2780302d">&#9670;&#160;</a></span>delete_byID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int dao.BookDao.delete_byID </td>
+          <td>(</td>
+          <td class="paramtype">Connection&#160;</td>
+          <td class="paramname"><em>con</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws Exception</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >delete a book from the database by passing bookId as parameter </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">con</td><td></td></tr>
+    <tr><td class="paramname">id</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1: success 0: fail <br  />
+ </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -231,7 +229,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>totalNum </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Exception</td><td></td></tr>
@@ -300,14 +298,14 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p >Return a book instance by given book id </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
     <tr><td class="paramname">id</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a book instance with given book ID </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>book </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Exception</td><td></td></tr>
@@ -356,10 +354,11 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Change a book's available status with given bookName </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Change a book's available status('1' indicate available, '0' indicate not available) with given bookName </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
-    <tr><td class="paramname">book</td><td></td></tr>
+    <tr><td class="paramname">int</td><td>availableStatus </td></tr>
+    <tr><td class="paramname">bookName</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -371,7 +370,6 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd></dd></dl>
 
 </div>
 </div>

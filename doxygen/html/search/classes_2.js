@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loginview_0',['LoginView',['../classviews_1_1_login_view.html',1,'views']]]
+  ['databaseutility_0',['DataBaseUtility',['../classutility__public_1_1_data_base_utility.html',1,'utility_public']]]
 ];
