@@ -6,6 +6,16 @@ import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * 
+ *This Class is the User View Interface. 
+ *It display the list of all books in the library after regular users login in.
+ *It allows user to borrow a book by setting the book's isAvailable status to 1 or 0
+ *Set Status 1 indicate this book is available. Set status to 0 indicate the book is not available.
+ *
+ * @author Joshua
+ * 
+ */
 public class UserView extends JFrame implements ActionListener {
     JFrame frame1;
     JLabel l0, l1, l2;

@@ -4,14 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- * Utility for connecting Database
- * Two method:
- * getCon()
- * closeCon()
- * @author novak
+ * This is an utility Class for connecting Database
+ * @author Caihong
  *
  */
-
 
 public class DataBaseUtility {
 	private String dbUrl = "jdbc:mysql://sql5.freesqldatabase.com:3306/sql5520691";  
@@ -20,11 +16,12 @@ public class DataBaseUtility {
 	private String jdbcName = "mysql.jdbc.driver";   //Java to MySQL Connector Driver
 
 	
-	/**
-	 * 
-	 * @return connection 
-	 * @throws Exception
-	 */
+    /**
+     * Creates a Connection object by using database URL, database username and password
+     * for sending SQL statements to the database.
+     * @return connection
+     * @throws Exception
+     */
 	public Connection getCon()throws Exception{
 		//Class.forName(jdbcName);
 		Connection con = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
@@ -57,5 +54,4 @@ public class DataBaseUtility {
 //		
 //	}//main
 	
-
 }//
