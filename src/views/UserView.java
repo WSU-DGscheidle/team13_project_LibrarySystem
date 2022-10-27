@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * 
  *This Class is the User View Interface. 
- *It display the list of all books in the library.
+ *It display the list of all books in the library after regular users login in.
  *It allows user to borrow a book by setting the book's isAvailable status to 1 or 0
  *Set Status 1 indicate this book is available. Set status to 0 indicate the book is not available.
  *
