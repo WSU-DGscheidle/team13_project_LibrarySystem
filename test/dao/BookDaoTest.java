@@ -7,7 +7,8 @@ import java.sql.ResultSet;
 import model.Books;
 import model.User;
 import utility_public.DataBaseUtility;
-import org.junit.Test
+import org.junit.Assert;
+import org.junit.Test;
 
 
 /**
