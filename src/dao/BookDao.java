@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import model.Books;
 import model.User;
 import utility_public.DataBaseUtility;
-
+import java.util.ArrayList;
 
 /**
  * The purpose of this class is to assist UserView and AdminView
@@ -34,7 +34,8 @@ public class BookDao {
 		pstmt.setInt(2, book.getAvailable());
 		pstmt.setString(3, book.getLendTo());
 	
-		return pstmt.executeUpdate();			
+		return pstmt.executeUpdate();
+				
 	}
 
 	
@@ -62,6 +63,8 @@ public class BookDao {
 	 * @param bookName
 	 * @return 1:  success 0: fail         
 	 * @throws Exception
+	 * 
+	 * @author 
 	 */
 	//URL:alvinalexander.com/java/java-mysql-update-query-example/
 	public static int update_isAvailable(Connection con,int availableStatus,String bookName)throws Exception{
@@ -122,6 +125,27 @@ public class BookDao {
 		return resultBook;
 	}
 	
+	/**
+	 * Return a list of all books in the database
+	 * @throws Exception
+	 */
+	public static ArrayList<Books> getBooksList() throws Exception    {
+	    ArrayList<Books> booksList = new ArrayList<Books>();
+	    
+	    //Get total numbers of books    
+	    DataBaseUtility dbUtil = new DataBaseUtility();
+	    Connection con = dbUtil.getCon();  
+	    int totalNum  = BookDao.getTotalNum(con);
+	    
+	    //the bookID start with 1
+	    for(int i=1; i<totalNum + 1  ; i++) {  
+	    	booksList.add(  BookDao.returnBook(con, i)   );    	
+	    }
+	    return booksList;
+
+	   
+	}
+	
 	
 	public static void main(String[] args) throws Exception {
 	
@@ -130,7 +154,7 @@ public class BookDao {
     //BookDao.returnBook(con, 1).getBookName();
         
     //Test: returnBook   Pass!
-    // System.out.println(BookDao.returnBook(con, 1).getBookName());
+    //System.out.println(BookDao.returnBook(con, 1).getBookName());
 	     
 	//Test: getTotalNum  Pass!
 	//System.out.println(BookDao.getTotalNum(con));
@@ -144,6 +168,14 @@ public class BookDao {
 	
 	//Test: delete_byID(Connection con,int id) Pass!
 	//System.out.print( BookDao.delete_byID(con, 13)); //delete testBook1
+	
+	//Test: getBooksList()   Pass!
+//	ArrayList<Books> aList = null;
+//	aList = BookDao.getBooksList();
+//				 
+//	for(Books aBook : aList) {
+//		System.out.println(aBook.getBookName());
+//	}
 	
   }
 	
