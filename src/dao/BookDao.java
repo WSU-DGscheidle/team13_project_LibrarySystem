@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class BookDao {
 	
+	
 	/**
 	 * Add a book to the database
 	 * @param con
@@ -147,6 +148,32 @@ public class BookDao {
 	}
 	
 	
+	/**
+	 * Return an array of strings that show the information of one book 
+	 * @param int bookID
+	 * @throws Exception
+	 */
+	public static Object[] getArrayOfOneBook(int bookID) throws Exception    {
+		
+	    DataBaseUtility dbUtil = new DataBaseUtility();
+	    Connection con = dbUtil.getCon(); 
+	    
+	    Books aBook =  BookDao.returnBook(con, bookID); 
+	    
+        Object[] arr;         
+        arr = new Object[4]; //4 columns is fixed
+	    
+        arr[0]=aBook.getBookID(); 
+        arr[1]=aBook.getBookName();
+        arr[2]=aBook.getAvailable();
+        arr[3]=aBook.getLendTo();
+	    
+	    return arr;
+
+	   
+	}
+	
+	
 	public static void main(String[] args) throws Exception {
 	
 	DataBaseUtility dbUtil = new DataBaseUtility(); 
@@ -176,6 +203,13 @@ public class BookDao {
 //	for(Books aBook : aList) {
 //		System.out.println(aBook.getBookName());
 //	}
+	
+//	//Test: getArrayOfOneBook(int bookID): Pass!S
+//	Object[] testArray = BookDao.getArrayOfOneBook(6);
+//	for(int i=0; i<4; i++) {
+//		System.out.println(testArray[i]);
+//	}
+	
 	
   }
 	
