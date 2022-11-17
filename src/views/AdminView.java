@@ -37,12 +37,9 @@ public class AdminView extends JFrame {
     JComboBox c1;
     JButton b1;
     Connection con;
-    ResultSet rs, rs1;
-    Statement st, st1;
-    PreparedStatement pst;
     String ids;
     static JTable table;
-    String[] columnNames = {"Book ID", "Book Name", "Author", "Availabile?"};
+    String[] columnNames = {"Book ID", "Book Name", "Author", "Availabile?", "Borrower"};
     String from;
     
     public void actionPerformed(ActionEvent ae) {
@@ -78,7 +75,7 @@ public class AdminView extends JFrame {
     	con = dbUtil.getCon();
     	
         //Example data
-        Object[] row = {"1", "Notes From Underground.", "Dostoyevsky", (true) ? "Yes" : "No"};
+        Object[] row = {"1", "Notes From Underground.", "Dostoyevsky", (false) ? "Yes" : "No", "Skyler G"};
         model.addRow(row);
 		
         frame1.add(scroll);
