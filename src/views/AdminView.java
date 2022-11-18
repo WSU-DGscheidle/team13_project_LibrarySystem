@@ -16,8 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
+import model.LibraryCheckBoxModelListener;
+import model.LibraryJTable;
 import utility_public.DataBaseUtility;
 
 
@@ -61,7 +65,7 @@ public class AdminView extends JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
        
-        table = new JTable();
+        table = new LibraryJTable();
         table.setModel(model);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setFillsViewportHeight(true);
@@ -75,9 +79,11 @@ public class AdminView extends JFrame {
     	con = dbUtil.getCon();
     	
         //Example data
-        Object[] row = {"1", "Notes From Underground.", "Dostoyevsky", (false) ? "Yes" : "No", "Skyler G"};
+        Object[] row = {"1", "Notes From Underground.", "Dostoyevsky", true, "Skyler G"};
         model.addRow(row);
 		
+        //This must be after the rows are added to the table so that it knows what to listen to
+        table.getModel().addTableModelListener(new LibraryCheckBoxModelListener());
         frame1.add(scroll);
         frame1.setVisible(true);
         frame1.setSize(400, 300);
