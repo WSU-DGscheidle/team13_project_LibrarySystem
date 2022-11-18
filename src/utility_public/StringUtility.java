@@ -30,7 +30,7 @@ public class StringUtility {
 	 * @author: Skyler
 	 * @throws EmptyStringException 
 	 */
-	public static boolean isEmpty(String str) {	
+	public static boolean isEmpty(String str) throws EmptyStringException {	
 		//add more codes
 		return (str.isEmpty() || str.isBlank());
 	}
@@ -44,6 +44,17 @@ class NullStringException  extends Exception
 	private static final long serialVersionUID = 1L;
 
 	public NullStringException (String str)  
+    {          
+        super(str);  
+    }  
+}  
+
+class EmptyStringException  extends Exception  
+{  
+	//default serial version
+	private static final long serialVersionUID = 1L;
+
+	public EmptyStringException (String str)  
     {          
         super(str);  
     }  
