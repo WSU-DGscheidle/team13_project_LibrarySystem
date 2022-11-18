@@ -1,7 +1,5 @@
 package utility_public;
 
-import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.NullStringConversion;
-
 /**
  * This Class contain methods for String handling
  *
