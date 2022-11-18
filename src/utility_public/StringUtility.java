@@ -1,5 +1,6 @@
 package utility_public;
 
+import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.NullStringConversion;
 
 /**
  * This Class contain methods for String handling
@@ -12,9 +13,10 @@ public class StringUtility {
 	 * @param str
 	 * @return  true: is null; false: is not null.
 	 * 
-	 * @author: 
+	 * @author: Skyler
+	 * @throws NullStringException 
 	 */
-	public static boolean isNull(String str ){
+	public static boolean isNull(String str ) throws NullStringException {
 		//add more codes
 		return str == null;    
 				
@@ -25,7 +27,8 @@ public class StringUtility {
 	 * @param str
 	 * @return true: is empty; false: is not empty.
 	 * 
-	 * @author: 
+	 * @author: Skyler
+	 * @throws EmptyStringException 
 	 */
 	public static boolean isEmpty(String str) {	
 		//add more codes
@@ -33,3 +36,15 @@ public class StringUtility {
 	}
 	
 }//class
+
+
+class NullStringException  extends Exception  
+{  
+	//default serial version
+	private static final long serialVersionUID = 1L;
+
+	public NullStringException (String str)  
+    {          
+        super(str);  
+    }  
+}  
