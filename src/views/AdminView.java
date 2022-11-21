@@ -19,18 +19,20 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
 import model.LibraryCheckBoxModelListener;
 import model.LibraryJTable;
+import model.LibraryJTableButtonRenderer;
 import utility_public.DataBaseUtility;
 
 
 /**
- * 
- *This Class is the Administrator View Interface. 
- *It display the list of all books in the library after the Administrator login in.
- *It allows the Administrator to add,delete and edit book's information.
+ * @class
+ * This Class is the Administrator View Interface. 
+ * It display the list of all books in the library after the Administrator login in.
+ * It allows the Administrator to add,delete and edit book's information.
  *
  * @author Skyler
  * 
@@ -44,7 +46,7 @@ public class AdminView extends JFrame {
     Connection con;
     String ids;
     static JTable table;
-    String[] columnNames = {"Book ID", "Book Name", "Author", "Availabile?", "Borrower"};
+    String[] columnNames = {"Book ID", "Book Name", "Author", "Availabile?", "Borrower", "Delete Book"};
     String from;
     
     public void actionPerformed(ActionEvent ae) {
@@ -70,6 +72,8 @@ public class AdminView extends JFrame {
         table.setModel(model);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setFillsViewportHeight(true);
+        TableCellRenderer tableRenderer = table.getDefaultRenderer(JButton.class);
+        table.setDefaultRenderer(JButton.class, new LibraryJTableButtonRenderer(tableRenderer));
         JScrollPane scroll = new JScrollPane(table);
         scroll.setHorizontalScrollBarPolicy(
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -80,7 +84,7 @@ public class AdminView extends JFrame {
     	con = dbUtil.getCon();
     	
         //Example data
-        Object[] row = {"1", "Notes From Underground.", "Dostoyevsky", true, "Skyler G"};
+        Object[] row = {"1", "Notes From Underground.", "Dostoyevsky", true, "Skyler G", new JButton("Delete")};
         model.addRow(row);
 		
         //This must be after the rows are added to the table so that it knows what to listen to

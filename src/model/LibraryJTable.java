@@ -6,7 +6,15 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+import javax.swing.JButton;
 
+/**
+ * @class LibraryJTable
+ * Custom class used to modify a JTable to work for the Library System
+ * 
+ * @author Skyler Gentner
+ *
+ */
 public class LibraryJTable extends JTable {
 	
     private static final long serialVersionUID = 1L;
@@ -58,6 +66,8 @@ public class LibraryJTable extends JTable {
                 return Boolean.class;
             case 4: 
             	return String.class;
+            case 5:
+            	return JButton.class;
             default:
                 return String.class;
         }
