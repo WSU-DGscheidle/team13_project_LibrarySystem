@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import dao.BookDao;
 import model.LibraryTableCheckBoxModelListener;
 import model.LibraryJTable;
 import model.LibraryJTableButtonRenderer;
@@ -81,8 +82,12 @@ public class AdminView extends JFrame {
     	JButton btnRemoveBook = new JButton("Remove");
     	btnRemoveBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				e.getActionCommand();
-				System.out.println("Remove 1");
+				try {
+					BookDao.delete_byID(con, 1);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
         //Example data
