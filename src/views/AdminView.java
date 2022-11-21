@@ -1,35 +1,27 @@
 package views;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
 
-import model.LibraryCheckBoxModelListener;
+import model.LibraryTableCheckBoxModelListener;
 import model.LibraryJTable;
 import model.LibraryJTableButtonRenderer;
+import model.LibraryTableButtonMouseListener;
 import utility_public.DataBaseUtility;
+import java.awt.event.ActionListener;
 
 
 /**
- * @class
+ * @class AdminView
  * This Class is the Administrator View Interface. 
  * It display the list of all books in the library after the Administrator login in.
  * It allows the Administrator to add,delete and edit book's information.
@@ -38,10 +30,14 @@ import utility_public.DataBaseUtility;
  * 
  */
 public class AdminView extends JFrame {
+	public AdminView() {
+	}
 
+	//Default serial version ID since this class extends JFrame
+	private static final long serialVersionUID = 1L;
+	
 	JFrame frame1;
     JLabel l0, l1, l2;
-    JComboBox c1;
     JButton b1;
     Connection con;
     String ids;
@@ -63,7 +59,7 @@ public class AdminView extends JFrame {
     public void showTableData() throws Exception {
         frame1 = new JFrame("Admin View");
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.setLayout(new BorderLayout());
+        frame1.getContentPane().setLayout(new BorderLayout());
        
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
@@ -79,20 +75,34 @@ public class AdminView extends JFrame {
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        
         DataBaseUtility dbUtil = new DataBaseUtility(); 
     	con = dbUtil.getCon();
     	
+    	JButton btnRemoveBook = new JButton("Remove");
+    	btnRemoveBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				e.getActionCommand();
+				System.out.println("Remove 1");
+			}
+		});
         //Example data
-        Object[] row = {"1", "Notes From Underground.", "Dostoyevsky", true, "Skyler G", new JButton("Delete")};
+        Object[] row = {"1", "Notes From Underground.", "Dostoyevsky", true, "Skyler G", btnRemoveBook};
         model.addRow(row);
 		
         //This must be after the rows are added to the table so that it knows what to listen to
-        table.getModel().addTableModelListener(new LibraryCheckBoxModelListener());
+        table.getModel().addTableModelListener(new LibraryTableCheckBoxModelListener());
+        table.addMouseListener(new LibraryTableButtonMouseListener(table));
         
-        frame1.add(scroll);
+        JButton btnAddBook = new JButton("Add Book");
+		btnAddBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(e.getActionCommand());
+			}
+		});
+		frame1.getContentPane().add(btnAddBook, BorderLayout.NORTH);
+        frame1.getContentPane().add(scroll);
         frame1.setVisible(true);
-        frame1.setSize(400, 300);
+        frame1.setSize(700, 300);
     }
     
     public static void main(String args[]) throws Exception {
