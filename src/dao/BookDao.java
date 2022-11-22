@@ -9,7 +9,7 @@ import model.User;
 import utility_public.DataBaseUtility;
 import java.util.ArrayList;
 
-/**
+/** $$$$
  * The purpose of this class is to assist UserView and AdminView
  * in communicating with the online MySQL database and manipulating data within the database.
  * @author Caihong
