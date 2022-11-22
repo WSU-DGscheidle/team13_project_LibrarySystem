@@ -9,7 +9,7 @@ import javax.swing.table.TableModel;
 import dao.BookDao;
 import utility_public.DataBaseUtility;
 
-public class LibraryCheckBoxModelListener implements TableModelListener {
+public class LibraryTableCheckBoxModelListener implements TableModelListener {
 
 	@Override
 	public void tableChanged(TableModelEvent e) {
