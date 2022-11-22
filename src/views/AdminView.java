@@ -84,6 +84,7 @@ public class AdminView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					BookDao.delete_byID(con, 1);
+					model.removeRow(1-1);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -91,19 +92,21 @@ public class AdminView extends JFrame {
 			}
 		});
         //Example data
-        Object[] row = {"1", "Notes From Underground.", "Dostoyevsky", true, "Skyler G", btnRemoveBook};
+        Object[] row = {"1", "Notes From Underground.", "Dostoyevsky", false, "Skyler G", btnRemoveBook};
         model.addRow(row);
+
+        JButton btnAddBook = new JButton("Add Book");
+		btnAddBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddBookForm addBookForm = new AddBookForm(model);
+				addBookForm.showForm();
+			}
+		});
 		
         //This must be after the rows are added to the table so that it knows what to listen to
         table.getModel().addTableModelListener(new LibraryTableCheckBoxModelListener());
         table.addMouseListener(new LibraryTableButtonMouseListener(table));
         
-        JButton btnAddBook = new JButton("Add Book");
-		btnAddBook.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println(e.getActionCommand());
-			}
-		});
 		frame1.getContentPane().add(btnAddBook, BorderLayout.NORTH);
         frame1.getContentPane().add(scroll);
         frame1.setVisible(true);
