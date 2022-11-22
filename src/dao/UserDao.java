@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import model.User;
 
 
-/**
+/**  $$
  * This Class is a "Data Access Object" shorts for DAO, it only have one
  * method "login" which takes in an instance of connection and an instance of user to connect with MySql database
  * and return a User instance.
