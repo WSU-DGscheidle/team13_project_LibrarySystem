@@ -107,7 +107,7 @@ public class AdminView extends JFrame {
         table.getModel().addTableModelListener(new LibraryTableCheckBoxModelListener());
         table.addMouseListener(new LibraryTableButtonMouseListener(table));
         
-		frame1.getContentPane().add(btnAddBook, BorderLayout.NORTH);
+		    frame1.getContentPane().add(btnAddBook, BorderLayout.NORTH);
         frame1.getContentPane().add(scroll);
         frame1.setVisible(true);
         frame1.setSize(700, 300);
