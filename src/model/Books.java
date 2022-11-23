@@ -2,7 +2,7 @@ package model;
 
 
 /**
- * This is a class for book,it has 4 member data and some getter and setter methods.
+ * This is a class for book,it has 5 member data and some getter and setter methods.
  * @author Caihong
  * 
  */
@@ -13,6 +13,7 @@ public class Books {
 	private int bookID;
 	private int isAvailable;    //if a book is available isAvailable == 1 , if not isAvailable == 0
 	private String lendTo; 
+	private String borrowTime;
 	
 	//non-parameter constructor
 	public Books() {
@@ -36,6 +37,14 @@ public class Books {
 		return bookName;
 	}
 
+	public String getBorrowTime() {
+		return borrowTime;
+	}
+	
+	public void setBorrowTime(String time) {
+		this.borrowTime = time;
+	}
+	
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
 	}
