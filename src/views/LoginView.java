@@ -95,18 +95,9 @@ public class LoginView extends JFrame {
 						JOptionPane.showMessageDialog(btnNewButton, "UserName must not be null!");
 						return;
 					}
-				} catch (HeadlessException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				//Verify if userName is empty or not,if it is empty pop-up a warning dialog button
-				try {
-					if(StringUtility.isEmpty(password)) {
-						JOptionPane.showMessageDialog(btnNewButton, "UserName must not be empty!");
-						return;
+						if(StringUtility.isEmpty(password)) {
+							JOptionPane.showMessageDialog(btnNewButton, "UserName must not be empty!");
+							return;
 					}
 				} catch (HeadlessException e1) {
 					// TODO Auto-generated catch block
@@ -115,6 +106,8 @@ public class LoginView extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				//Verify if userName is empty or not,if it is empty pop-up a warning dialog button
+	            //Removed redundunt if conditions.
 				
 				//Connect to the Database
 				User user=new User(userName,password);  //create a User instance
