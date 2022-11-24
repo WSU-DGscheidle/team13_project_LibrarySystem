@@ -212,4 +212,3 @@ public class LoginView extends JFrame {
 	}
 	
 	
-}//LoginView  nov 23 2022 7;13 pm
