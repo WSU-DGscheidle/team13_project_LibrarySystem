@@ -9,7 +9,7 @@ import model.User;
 import utility_public.DataBaseUtility;
 import java.util.ArrayList;
 
-/** $$$$
+/** 
  * The purpose of this class is to assist UserView and AdminView
  * in communicating with the online MySQL database and manipulating data within the database.
  * @author Caihong
@@ -77,6 +77,23 @@ public class BookDao {
 		
 	}
 	
+	/**
+	 * Given a book's ID update the borrowTime info in the database
+	 * @param con
+	 * @param time
+	 * @param id
+	 * @return 1:  success 0: fail  
+	 * @throws Exception
+	 */
+	public static int update_borrowTime(Connection con,String time,int id)throws Exception{
+		String sql="update t_book set borrowTime = ? where bookID = ?";
+		PreparedStatement pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, time);
+		pstmt.setInt(2, id);
+		return  pstmt.executeUpdate();
+		
+	}
+	
 	
 	/**
 	 * Return total numbers of books in the t_book table in the database
@@ -119,6 +136,7 @@ public class BookDao {
 			resultBook.setBookID(rs.getInt("bookID"));
 			resultBook.setBookName(rs.getString("bookName"));
 			resultBook.setAvailable(rs.getInt("isAvailable"));
+			resultBook.setBorrowTime(rs.getString("borrowTime"));
 			resultBook.setLendTo(rs.getString("lendTo"));
 		}
 		
@@ -130,12 +148,9 @@ public class BookDao {
 	 * Return a list of all books in the database
 	 * @throws Exception
 	 */
-	public static ArrayList<Books> getBooksList() throws Exception    {
+	public static ArrayList<Books> getBooksList(Connection con) throws Exception    {
 	    ArrayList<Books> booksList = new ArrayList<Books>();
-	    
-	    //Get total numbers of books    
-	    DataBaseUtility dbUtil = new DataBaseUtility();
-	    Connection con = dbUtil.getCon();  
+	     
 	    int totalNum  = BookDao.getTotalNum(con);
 	    
 	    //the bookID start with 1
@@ -149,30 +164,48 @@ public class BookDao {
 	
 	
 	/**
-	 * Return an array of strings that show the information of one book 
+	 * Given bookID,return an array of strings that show the information of one book
+	 * @param con 
 	 * @param int bookID
 	 * @throws Exception
 	 */
-	public static Object[] getArrayOfOneBook(int bookID) throws Exception    {
-		
-	    DataBaseUtility dbUtil = new DataBaseUtility();
-	    Connection con = dbUtil.getCon(); 
-	    
+	public static Object[] getArrayOfOneBook(Connection con,int bookID) throws Exception    {
+		    
 	    Books aBook =  BookDao.returnBook(con, bookID); 
 	    
         Object[] arr;         
-        arr = new Object[4]; //4 columns is fixed
+        arr = new Object[5]; //5 columns is fixed: bookID,bookName,isAvailable,lendTo,borrowTime
 	    
         arr[0]=aBook.getBookID(); 
         arr[1]=aBook.getBookName();
         arr[2]=aBook.getAvailable();
         arr[3]=aBook.getLendTo();
+        arr[4]=aBook.getBorrowTime();
 	    
 	    return arr;
 
 	   
 	}
 	
+	/**
+	 * Given a book name,return total quantity of the books in the t_book table from the database
+	 * @param con
+	 * @return
+	 * @throws Exception
+	 */
+	//URL:tutorialspoint.com/how-to-count-rows-count-and-java#:~:text=The%20SQL%20Count()%20function,of%20rows%20in%20a%20table.
+	public static int getBookQuantity(Connection con,String name)throws Exception{
+		int quantity= 0;
+		ArrayList<Books> bookList = null;
+		bookList = BookDao.getBooksList(con);
+	
+		for(Books book : bookList) {
+			if(book.getBookName().equalsIgnoreCase(name)) {
+				quantity=quantity + 1;
+			}
+		}		
+		return quantity;	
+	}
 	
 	public static void main(String[] args) throws Exception {
 	
@@ -190,27 +223,32 @@ public class BookDao {
 	//System.out.println("update_isAvailable success ? " + BookDao.update_isAvailable( con,0,"Harry Potter 1")  );
 	
     //Test: add(Connection con,Books book)  Pass!
+	//Books newBook = new Books("Harry Potter 1",21,1,null);  lendTO default value is : NULL in the database
 	//Books newBook = new Books("TestBook1", 1,"Jim");
 	//System.out.print( BookDao.add(con, newBook) );
 	
 	//Test: delete_byID(Connection con,int id) Pass!
-	//System.out.print( BookDao.delete_byID(con, 13)); //delete testBook1
+	//System.out.print( BookDao.delete_byID(con, 18)); //delete testBook1
 	
 	//Test: getBooksList()   Pass!
-//	ArrayList<Books> aList = null;
-//	aList = BookDao.getBooksList();
-//				 
+	//ArrayList<Books> aList = null;
+	//aList = BookDao.getBooksList(con);
+				 
 //	for(Books aBook : aList) {
 //		System.out.println(aBook.getBookName());
 //	}
 	
-//	//Test: getArrayOfOneBook(int bookID): Pass!S
-//	Object[] testArray = BookDao.getArrayOfOneBook(6);
-//	for(int i=0; i<4; i++) {
+//	//Test: Object[] getArrayOfOneBook(Connection con,int bookID)
+//	Object[] testArray = BookDao.getArrayOfOneBook(con,4);
+//	for(int i=0; i<5; i++) {
 //		System.out.println(testArray[i]);
-//	}
+//	}	
+	//Test: getBookQuantity(Connection con,String name) Pass!
+   //System.out.println(BookDao.getBookQuantity(con,"Harry Potter 1"));
 	
-	
+	//Test: update_borrowTime(Connection con,String time,int id)
+   //System.out.println(BookDao.update_borrowTime(con,"8/8/22",16));
+  
   }
 	
-}//
+}//Nov 22
