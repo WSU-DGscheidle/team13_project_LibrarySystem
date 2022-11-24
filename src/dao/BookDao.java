@@ -57,22 +57,23 @@ public class BookDao {
 		
 	}
 	
-	/**
-	 * Change a book's available status('1' indicate available, '0' indicate not available) with given bookName
-	 * @param con
-	 * @param int availableStatus
-	 * @param bookName
-	 * @return 1:  success 0: fail         
-	 * @throws Exception
-	 * 
-	 * @author 
-	 */
+    /**
+     * Borrow a book, givien an book id, it will update a couple data of a book in the database
+     * @param con
+     * @param availableStatus
+     * @param id
+     * @return 1:  success 
+	 *         0:  fail  
+     * @throws Exception
+     */
 	//URL:alvinalexander.com/java/java-mysql-update-query-example/
-	public static int update_isAvailable(Connection con,int availableStatus,String bookName)throws Exception{
-		String sql="update t_book set isAvailable = ? where bookName = ?";
+	public static int borrowBook(Connection con,int availableStatus,String borrower,String borrowTime,int id)throws Exception{
+		String sql="update t_book set isAvailable = ?, lendTo = ?, borrowTime =? where bookID = ?";
 		PreparedStatement pstmt=con.prepareStatement(sql);
 		pstmt.setInt(1, availableStatus);
-		pstmt.setString(2, bookName);
+		pstmt.setString(2, borrower);
+		pstmt.setString(3, borrowTime);
+		pstmt.setInt(4, id);
 		return  pstmt.executeUpdate();
 		
 	}
@@ -86,7 +87,7 @@ public class BookDao {
 	 * @throws Exception
 	 */
 	public static int update_borrowTime(Connection con,String time,int id)throws Exception{
-		String sql="update t_book set borrowTime = ? where bookID = ?";
+		String sql="update t_book set borrowTime =? where bookID = ?";
 		PreparedStatement pstmt=con.prepareStatement(sql);
 		pstmt.setString(1, time);
 		pstmt.setInt(2, id);
@@ -222,6 +223,9 @@ public class BookDao {
 	//Test: update_isAvailable Pass!
 	//System.out.println("update_isAvailable success ? " + BookDao.update_isAvailable( con,0,"Harry Potter 1")  );
 	
+	//Test: borrowBook(Connection con,int availableStatus,String borrower,String borrowTime,int id)
+	//System.out.println( borrowBook(con,0,"Lucy","9/9/22",21)  );
+	
     //Test: add(Connection con,Books book)  Pass!
 	//Books newBook = new Books("Harry Potter 1",21,1,null);  lendTO default value is : NULL in the database
 	//Books newBook = new Books("TestBook1", 1,"Jim");
@@ -247,7 +251,7 @@ public class BookDao {
    //System.out.println(BookDao.getBookQuantity(con,"Harry Potter 1"));
 	
 	//Test: update_borrowTime(Connection con,String time,int id)
-   //System.out.println(BookDao.update_borrowTime(con,"8/8/22",16));
+   //System.out.println(BookDao.update_borrowTime(con,"8/8/19",16));
   
   }
 	
