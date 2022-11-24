@@ -20,6 +20,7 @@ import utility_public.DataBaseUtility;
  * 
  */
 
+//
 public class UserView extends JFrame implements ActionListener {
     JFrame frame1;
     JLabel l0, l1, l2;
@@ -44,10 +45,13 @@ public class UserView extends JFrame implements ActionListener {
 			}
         }
     }
+    
+    // method that draws the table
     public void showTableData() throws Exception {
         frame1 = new JFrame("UserView Title");
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame1.setLayout(new BorderLayout());
+        JPanel p = new JPanel(new GridLayout(2, 1));
        
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
@@ -62,17 +66,27 @@ public class UserView extends JFrame implements ActionListener {
         scroll.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
                 
-        //1. Get the total number of rows (total number of books in database)
-        DataBaseUtility dbUtil = new DataBaseUtility(); 
-        Connection con = dbUtil.getCon();        
-        int totalNum = BookDao.getTotalNum(con);
-        //2. Loop total Num of books times
-        for(int i=1; i<totalNum + 1; i++) {    //bookID start with '1'
-        	model.addRow( BookDao.getArrayOfOneBook(i)); 	
-        }
+//        //1. Get the total number of rows (total number of books in database)
+//        DataBaseUtility dbUtil = new DataBaseUtility(); 
+//        Connection con = dbUtil.getCon();        
+//        int totalNum = BookDao.getTotalNum(con);
+//        //2. Loop total Num of books times
+//        for(int i=1; i<totalNum + 1; i++) {    //bookID start with '1'
+//        	model.addRow( BookDao.getArrayOfOneBook(i)); 	
+//        }
         
+        JButton btnNewButton_1 = new JButton("Borrow");
+        btnNewButton_1.setSize(new Dimension(40, 40));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {     //anonymous inner class
+				//enter code to change book availability in database
+				
+			}
+		});
         
+		frame1.setContentPane(p);
         frame1.add(scroll);
+        frame1.add(btnNewButton_1);
         frame1.setVisible(true);
         frame1.setSize(400, 300);
     }
