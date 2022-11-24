@@ -20,6 +20,11 @@ public class BookDaoTest {
 		Assert.assertEquals(1,BookDao.delete_byID(con, 21));
 	}
 	
+	@Test
+	public void test_ update_isAvailable() {
+		Assert.assertEquals(1,BookDao.delete_byID(con, 21));
+	}
+	
 
 
-}//
+}//Nov 23
