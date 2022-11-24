@@ -61,15 +61,7 @@ public class UserView extends JFrame implements ActionListener {
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        
-        //Example data
-//        Object[] row1 = {1,"Harry Potter 1",1,""};
-//        Object[] row2 = {2,"Harry Potter 2",1,""};
-//        Object[] row3 = {3,"Harry Potter 3",0,"Lucy"};
-//        model.addRow(row1);
-//        model.addRow(row2);
-//        model.addRow(row3);
-        
+                
         //1. Get the total number of rows (total number of books in database)
         DataBaseUtility dbUtil = new DataBaseUtility(); 
         Connection con = dbUtil.getCon();        
