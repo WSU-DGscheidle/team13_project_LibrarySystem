@@ -17,7 +17,7 @@ public class BookDaoTest {
 	
 	@Test
 	public void test_delete_byID() {
-		Assert.assertEquals(1,BookDao.delete_byID(con, 18));
+		Assert.assertEquals(1,BookDao.delete_byID(con, 21));
 	}
 	
 
