@@ -212,4 +212,3 @@ public class LoginView extends JFrame {
 	}
 	
 	
-}//LoginView Nov 23 
