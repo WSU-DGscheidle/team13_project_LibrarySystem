@@ -12,7 +12,7 @@ import utility_public.DataBaseUtility;
 
 /**
  * 
- *This Class is the User View Interface. 
+ *$This Class is the User View Interface. 
  *It display the list of all books in the library after regular users login in.
  *It allows user to borrow a book by setting the book's isAvailable status to 1 or 0
  *Set Status 1 indicate this book is available. Set status to 0 indicate the book is not available.
@@ -40,12 +40,15 @@ public class UserView extends JFrame implements ActionListener   {
     int id;
     String selectedName;
     String returnDay;
+    int[] idArrayForDisplay;
     DefaultTableModel model;
     
     
 	public UserView() {
 		try {
 			con = new DataBaseUtility().getCon();
+			totalNum = BookDao.getTotalNum(con);
+			idArrayForDisplay = BookDao.getArrayOfID(con);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,11 +97,15 @@ public class UserView extends JFrame implements ActionListener   {
         
         //1. Get the total number of rows (total number of books in database)
         	       
-        totalNum = BookDao.getTotalNum(con);
+        
         //2. Loop total Num of books times
-        for(int i=1; i<totalNum + 1; i++) {    //bookID start with '1'
-        	model.addRow( BookDao.getArrayOfOneBook(con,i)); 	
+//        for(int i=1; i<totalNum + 1; i++) {    //bookID start with '1'
+//        	model.addRow( BookDao.getArrayOfOneBook(con,i)); 	
+//        }
+        for(int id : idArrayForDisplay){
+        	model.addRow( BookDao.getArrayOfOneBook(con,id)); 
         }
+        
         
         //3.Fill dropdown box
        //URL:javatpoint.com/java-jcombobox
@@ -136,8 +143,7 @@ public class UserView extends JFrame implements ActionListener   {
 			public void actionPerformed(ActionEvent e) {
 				returnDay = text.getText();
 				text.setText(returnDay);
-				System.out.print(returnDay);
-                   
+				System.out.print(returnDay);                
 			}
         	
         });
@@ -164,14 +170,13 @@ public class UserView extends JFrame implements ActionListener   {
 				//Delete all rows: URL:stackoverflow.com/questions/6232355/deleting-all-the-rows-in-a-jtable
 				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
 				dtm.setRowCount(0);
-		        for(int i=1; i<totalNum + 1; i++) {    //bookID start with '1'
+		        for(int id : idArrayForDisplay){
 		        	try {
-						model.addRow( BookDao.getArrayOfOneBook(con,i));
-						System.out.println(i);
+						model.addRow( BookDao.getArrayOfOneBook(con,id));
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-					} 	
+					} 
 		        }
 				
 			}
@@ -190,15 +195,14 @@ public class UserView extends JFrame implements ActionListener   {
 
 				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
 				dtm.setRowCount(0);
-		        for(int i=1; i<totalNum + 1; i++) {    //bookID start with '1'
+		        for(int id : idArrayForDisplay){
 		        	try {
-						model.addRow( BookDao.getArrayOfOneBook(con,i));
-						System.out.println(i);
+						model.addRow( BookDao.getArrayOfOneBook(con,id));
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-					} 	
-		        }				
+					} 
+		        }
 			}
         	
         });
@@ -238,4 +242,4 @@ public class UserView extends JFrame implements ActionListener   {
 			e.printStackTrace();
 		}
     }
-}//Nov 24 11 pm
+}
