@@ -26,19 +26,20 @@ public class UserView extends JFrame implements ActionListener   {
     JLabel l0, l1, l2;
     JComboBox dropDownBox1;
     JComboBox dropDownBox2;
-    JButton b1;
+    JButton borrowButton;
+    JButton returnButton;
     Connection con = null;
     ResultSet rs, rs1;
     Statement st, st1;
     PreparedStatement pst;
-    String ids;
     static JTable table;
-    String[] columnNames = {"Book ID","Book Name","Available ?","Lend To"};
+    String[] columnNames = {"Book ID","Book Name","Available ?","Lend To","Due Day"};
     String from;
     int totalNum;
     String[] idArray;
     int id;
-    String borrowerName;
+    String selectedName;
+    String returnDay;
     DefaultTableModel model;
     
     
@@ -52,9 +53,6 @@ public class UserView extends JFrame implements ActionListener   {
 	}
 	
 
-    
-
-    
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == b1) {
             try {
@@ -75,14 +73,12 @@ public class UserView extends JFrame implements ActionListener   {
         model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
         
-        //frame1.add(dropDownBox1);
-        
         table = new JTable();
         table.setModel(model);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setFillsViewportHeight(true);
         JScrollPane scroll = new JScrollPane(table);
-        scroll.setPreferredSize(new Dimension(600,400));
+        
         scroll.setHorizontalScrollBarPolicy(
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(
@@ -118,35 +114,56 @@ public class UserView extends JFrame implements ActionListener   {
         dropDownBox1 = new JComboBox(idArray);
         dropDownBox2 = new JComboBox(nameArray);
         
-      //4.Add action to the dropdown box : 
-     //stackoverflow.com/questions/14306125/how-to-use-actionlistener-on-a-combobox-to-give-a-variable-a-value
-        dropDownBox1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				 String s = (String) dropDownBox1.getSelectedItem();//get the selected item
-				 id = Integer.parseInt(s); 	
-				 System.out.println(id);
-			}});     	
+      //this panel is going holds dropDownBox1 and dropDownBox2
+        JPanel north_panel =new JPanel(); 
+        north_panel.setLayout(new BoxLayout(north_panel, BoxLayout.Y_AXIS));
+        north_panel.add(dropDownBox1);
+        north_panel.add(dropDownBox2);
         
-        dropDownBox2.addActionListener(new ActionListener() {
+      //this panel is going holds borrowButton and returnButton
+        JPanel center_panel =new JPanel();
+        center_panel.setLayout(new BoxLayout(center_panel, BoxLayout.X_AXIS));
+        borrowButton =new JButton("Borrow Book");
+        returnButton =new JButton("Return Book");
+        center_panel.add(borrowButton);
+        
+        //Text field for enter Due day
+        //URL:java-tutorial-source.blogspot.com/2012/12/java-tutorial-39-source-code.html
+        JTextField text =new JTextField("Please Enter Due Day(e.g. 1/10/23)"); 
+        text.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				borrowerName = (String) dropDownBox2.getSelectedItem();//get the selected item
-				System.out.println(borrowerName);
+				returnDay = text.getText();
+				text.setText(returnDay);
+				System.out.print(returnDay);
+                   
+			}
+        	
+        });
+        
+        center_panel.add(text);
+        center_panel.add(returnButton);
+        
+        borrowButton.addActionListener(new ActionListener() {
+			@Override		
+			public void actionPerformed(ActionEvent e) {
+				returnDay = text.getText();
+				text.setText(returnDay);
+				System.out.print(returnDay);
+				
 				try {
-					BookDao.borrowBook(con,0,borrowerName,"5/5/22",id);
+					BookDao.borrowBook(con,0,selectedName,returnDay,id);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}				
+				}
+				
+
 				
 				//Delete all rows: URL:stackoverflow.com/questions/6232355/deleting-all-the-rows-in-a-jtable
 				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
 				dtm.setRowCount(0);
-				//dtm.setRowCount(totalNum);
-				//((AbstractTableModel) table.getModel()).fireTableCellUpdated(id, 3); // Repaint one cell.
-				//((AbstractTableModel) table.getModel()).fireTableCellUpdated(id, 4); // Repaint one cell.
-		        //1. Get the total number of rows (total number of books in database)
 		        for(int i=1; i<totalNum + 1; i++) {    //bookID start with '1'
 		        	try {
 						model.addRow( BookDao.getArrayOfOneBook(con,i));
@@ -157,18 +174,58 @@ public class UserView extends JFrame implements ActionListener   {
 					} 	
 		        }
 				
+			}
+			
+        });
+        
+        returnButton.addActionListener(new  ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					BookDao.borrowBook(con,1,null,null,id);
+				} catch (Exception e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 
-								 
+				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+				dtm.setRowCount(0);
+		        for(int i=1; i<totalNum + 1; i++) {    //bookID start with '1'
+		        	try {
+						model.addRow( BookDao.getArrayOfOneBook(con,i));
+						System.out.println(i);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} 	
+		        }				
+			}
+        	
+        });
+        
+      //4.Add action to the dropdown box : 
+     //stackoverflow.com/questions/14306125/how-to-use-actionlistener-on-a-combobox-to-give-a-variable-a-value
+        dropDownBox1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 String s = (String) dropDownBox1.getSelectedItem();//get the selected item
+				 id = Integer.parseInt(s); 	
+				 
+			}});     	
+        
+        dropDownBox2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				selectedName = (String) dropDownBox2.getSelectedItem();//get the selected item
+														 
 			}});  
-        
-        
-        
+             
         frame1.getContentPane().add(scroll,BorderLayout.SOUTH);
-        frame1.getContentPane().add(dropDownBox1,BorderLayout.NORTH);
-        frame1.getContentPane().add(dropDownBox2,BorderLayout.CENTER);
+        frame1.getContentPane().add(north_panel,BorderLayout.NORTH);
+        frame1.getContentPane().add(center_panel,BorderLayout.CENTER);
         frame1.setVisible(true);
-        frame1.setSize(1200, 900);
-
+        frame1.setSize(1200,700);
+       
     }
     
     public static void main(String args[]) {
@@ -181,4 +238,4 @@ public class UserView extends JFrame implements ActionListener   {
 			e.printStackTrace();
 		}
     }
-}//nov 24 12 am
+}//Nov 24 11 pm
