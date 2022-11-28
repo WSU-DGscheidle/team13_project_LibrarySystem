@@ -15,7 +15,7 @@ public class LibraryTableCheckBoxModelListener implements TableModelListener {
 	public void tableChanged(TableModelEvent e) {
 		int row = e.getFirstRow();
         int column = e.getColumn();
-        if (column == 3) {
+        if (column == 4) {
         	TableModel model = (TableModel) e.getSource();
         	DataBaseUtility dbUtil = new DataBaseUtility(); 
         	Connection con;

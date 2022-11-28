@@ -27,7 +27,7 @@ public class LibraryTableButtonMouseListener implements MouseListener {
         int column = table.getColumnModel().getColumnIndexAtX(e.getX());
         int row    = e.getY()/table.getRowHeight(); 
 
-        if (row < table.getRowCount() && row >= 0 && column == 5) {
+        if (row < table.getRowCount() && row >= 0 && column == 6) {
           Object value = table.getValueAt(row, column);
           if (value instanceof JButton) {
             ((JButton)value).doClick();

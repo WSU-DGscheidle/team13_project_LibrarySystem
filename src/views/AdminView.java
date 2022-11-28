@@ -27,7 +27,7 @@ import java.awt.event.ActionListener;
  * It display the list of all books in the library after the Administrator login in.
  * It allows the Administrator to add,delete and edit book's information.
  *
- * @author Skyler
+ * @author Skyler Gentner
  * 
  */
 public class AdminView extends JFrame {
@@ -43,7 +43,7 @@ public class AdminView extends JFrame {
     Connection con;
     String ids;
     static JTable table;
-    String[] columnNames = {"Book ID", "Book Name", "Author", "Availabile?", "Borrower", "Delete Book"};
+    String[] columnNames = {"Book ID", "Book Name", "Author", "Quantity", "Availabile?", "Borrower", "Delete Book"};
     String from;
     
     public void actionPerformed(ActionEvent ae) {
@@ -92,7 +92,7 @@ public class AdminView extends JFrame {
 			}
 		});
         //Example data
-        Object[] row = {"1", "Notes From Underground.", "Dostoyevsky", false, "Skyler G", btnRemoveBook};
+        Object[] row = {1, "Notes From Underground.", "Dostoyevsky", 1, false, "Skyler G", btnRemoveBook};
         model.addRow(row);
 
         JButton btnAddBook = new JButton("Add Book");

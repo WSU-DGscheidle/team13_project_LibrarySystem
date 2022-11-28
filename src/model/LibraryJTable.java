@@ -64,10 +64,12 @@ public class LibraryJTable extends JTable {
             case 2:
                 return String.class;
             case 3:
+            	return Integer.class;
+            case 4:
                 return Boolean.class;
-            case 4: 
+            case 5: 
             	return String.class;
-            case 5:
+            case 6:
             	return JButton.class;
             default:
                 return String.class;
@@ -80,8 +82,8 @@ public class LibraryJTable extends JTable {
     @Override
     public boolean isCellEditable(int row, int col) {
          switch (col) {
-             case 3:
              case 4:
+             case 5:
                  return true;
              default:
                  return false;
