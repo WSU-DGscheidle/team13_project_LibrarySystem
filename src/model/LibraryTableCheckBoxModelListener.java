@@ -23,7 +23,7 @@ public class LibraryTableCheckBoxModelListener implements TableModelListener {
 				con = dbUtil.getCon();
 				
 				//This function modifies the database which satisfies that part of the requirement
-            	BookDao.update_isAvailable(con, ((Boolean)model.getValueAt(row, column)) ? 1 : 0, (String)model.getValueAt(row, 1));
+            	BookDao.returnBook(con, ((Boolean)model.getValueAt(row, column)) ? 1 : 0, "", "", (int)model.getValueAt(row, 1));
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

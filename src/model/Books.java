@@ -14,6 +14,7 @@ public class Books {
 	private int isAvailable;    //if a book is available isAvailable == 1 , if not isAvailable == 0
 	private String lendTo; 
 	private String borrowTime;
+	private String dueDate;
 	
 	//non-parameter constructor
 	public Books() {
@@ -73,5 +74,11 @@ public class Books {
 		this.lendTo = lendTo;
 	}
 	
-	
+	public String getdueDay() {
+		return dueDate;
+	}
+
+	public void setdueDay(String dueDate) {
+		this.dueDate = dueDate;
+	}
 }//

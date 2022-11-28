@@ -211,4 +211,4 @@ public class LoginView extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
-	
+}

@@ -79,22 +79,27 @@ public class AdminView extends JFrame {
         DataBaseUtility dbUtil = new DataBaseUtility(); 
     	con = dbUtil.getCon();
     	
-    	JButton btnRemoveBook = new JButton("Remove");
-    	btnRemoveBook.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					BookDao.delete_byID(con, 1);
-					model.removeRow(1-1);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+    	int[] ids = BookDao.getArrayOfID(con);
+    	
+    	for(int id : ids)
+    	{
+	    	JButton btnRemoveBook = new JButton("Remove");
+	    	btnRemoveBook.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						BookDao.delete_byID(con, id);
+						model.removeRow(table.getSelectedRow());
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
-			}
-		});
-        //Example data
-        Object[] row = {1, "Notes From Underground.", "Dostoyevsky", 1, false, "Skyler G", btnRemoveBook};
-        model.addRow(row);
-
+			});
+	    	Object[] book = BookDao.getArrayOfOneBook(con, id);
+	    	int quantity = BookDao.getBookQuantity(con, (String)book[1]);
+	        Object[] row = {book[0], book[1], "", quantity, ((int)book[2] > 0) ? true : false, book[3], btnRemoveBook};
+	        model.addRow(row);
+    	}
         JButton btnAddBook = new JButton("Add Book");
 		btnAddBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
