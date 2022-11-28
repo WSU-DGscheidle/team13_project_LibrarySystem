@@ -1,4 +1,4 @@
-package utility_public;
+package dao;
 
 import java.awt.print.Book;
 import java.sql.Connection;
@@ -7,21 +7,24 @@ import java.sql.ResultSet;
 import model.Books;
 import model.User;
 import utility_public.DataBaseUtility;
+import java.util.ArrayList;
 import org.junit.Test
-import utility_public;
 import org.junit.Assert;
 
-
-public class StringUtilityTest {
+public class BookDaoTest {
+	DataBaseUtility dbUtil = new DataBaseUtility(); 
+	Connection con = dbUtil.getCon();
+	
 	@Test
-	public void test_isNull(String str ) {
-		Assert.assertEquals(false,StringUtility.isNull("abc"))
-		Assert.assertEquals(true,StringUtility.isNull())
+	public void test_delete_byID() {
+		Assert.assertEquals(1,BookDao.delete_byID(con, 21));
 	}
 	
 	@Test
-	public void test_isEmpty(String str){
-		Assert.assertEquals(true,StringUtility.isEmpty(""))
+	public void test_ update_isAvailable() {
+		Assert.assertEquals(1,BookDao.delete_byID(con, 21));
 	}
+	
 
-}//
+
+}//Nov 23

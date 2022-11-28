@@ -2,6 +2,7 @@ package views;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -21,6 +22,8 @@ import javax.swing.border.EmptyBorder;
 
 import model.User;
 import utility_public.DataBaseUtility;
+//import utility_public.EmptyStringException;
+//import utility_public.NullStringException;
 import utility_public.StringUtility;
 import dao.UserDao;
 
@@ -87,15 +90,24 @@ public class LoginView extends JFrame {
 				String password = new String(passwordTxt.getPassword());  //getPassword() return char[],then autoboxing use new String() and pass it to reference called password
 				
 				//Verify if userName is null or not,if it is null pop-up a warning dialog button
-				if(StringUtility.isNull(userName)) {
-					JOptionPane.showMessageDialog(btnNewButton, "UserName must not be null!");
-					return;
+				try {
+					if(StringUtility.isNull(userName)) {
+						JOptionPane.showMessageDialog(btnNewButton, "UserName must not be null!");
+						return;
+					}
+						if(StringUtility.isEmpty(password)) {
+							JOptionPane.showMessageDialog(btnNewButton, "UserName must not be empty!");
+							return;
+					}
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				//Verify if userName is empty or not,if it is empty pop-up a warning dialog button
-				if(StringUtility.isEmpty(password)) {
-					JOptionPane.showMessageDialog(btnNewButton, "UserName must not be empty!");
-					return;
-				}
+	            //Removed redundunt if conditions.
 				
 				//Connect to the Database
 				User user=new User(userName,password);  //create a User instance
@@ -200,4 +212,3 @@ public class LoginView extends JFrame {
 	}
 	
 	
-}//LoginView
