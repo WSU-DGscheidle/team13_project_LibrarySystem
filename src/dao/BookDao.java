@@ -30,7 +30,7 @@ public class BookDao {
 	 */
 	public static int add(Connection con,Books book)throws Exception{
 		
-		String sql="insert into t_book values(null,?,?,?)";
+		String sql="insert into t_book values(null,?,?,?,null)";
 		PreparedStatement pstmt=con.prepareStatement(sql);
 		pstmt.setString(1, book.getBookName());
 		pstmt.setInt(2, book.getAvailable());
@@ -295,8 +295,8 @@ public class BookDao {
 	
     //Test: add(Connection con,Books book)  Pass!
 	//Books newBook = new Books("Harry Potter 1",21,1,null);  lendTO default value is : NULL in the database
-	//Books newBook = new Books("TestBook1", 1,"Jim");
-	//System.out.print( BookDao.add(con, newBook) );
+//	Books newBook = new Books("TestBook9", 0,"Jim");
+//	System.out.print( BookDao.add(con, newBook) );
 	
 	//Test: delete_byID(Connection con,int id) Pass!
 	//System.out.print( BookDao.delete_byID(con, 18)); //delete testBook1
