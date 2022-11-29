@@ -8,6 +8,7 @@ import model.Books;
 import model.User;
 import utility_public.DataBaseUtility;
 import java.util.ArrayList;
+import java.util.List;
 
 /** 
  * The purpose of this class is to assist UserView and AdminView
@@ -178,11 +179,15 @@ public class BookDao {
 	    ArrayList<Books> booksList = new ArrayList<Books>();
 	     
 	    int totalNum  = BookDao.getTotalNum(con);
+	    int[] idArray;
+	    idArray = new int[totalNum];
+	    idArray = BookDao.getArrayOfID(con);
 	    
-	    //the bookID start with 1
-	    for(int i=1; i<totalNum + 1  ; i++) {  
-	    	booksList.add(  BookDao.returnBook(con, i)   );    	
+	    for(int id : idArray) {
+	    	booksList.add(BookDao.returnBook(con,id));
 	    }
+	    
+
 	    return booksList;
 
 	   
@@ -221,18 +226,28 @@ public class BookDao {
      * @throws Exception
      */
 	public static int[] getArrayOfID(Connection con) throws Exception    {
-	    
-		ArrayList<Books> booksList = BookDao.getBooksList(con);
-		
-		int totalNum  = BookDao.getTotalNum(con);
-		
-		int[] idArray;
-		
+	    	
+		int totalNum  = BookDao.getTotalNum(con);		
+		int[] idArray;	
 		idArray = new int[totalNum];
 		
-		for(int i=0;i<totalNum;i++) {
-			idArray[i] = booksList.get(i).getBookID();
-		}	    
+
+        String sql="SELECT bookID FROM t_book";
+        PreparedStatement pstmt=con.prepareStatement(sql);
+        ResultSet rs=pstmt.executeQuery(sql);
+
+        List<Integer> alist = new ArrayList<>();
+        
+        
+        while(rs.next()){
+           alist.add(rs.getInt("bookID"));         
+        }
+        
+        for(int i=0; i <alist.size(); i++) {
+        	idArray[i]= alist.get(i);
+        }
+        
+        
 		
 	    return idArray;
 	   
@@ -287,9 +302,9 @@ public class BookDao {
 	//System.out.print( BookDao.delete_byID(con, 18)); //delete testBook1
 	
 	//Test: getBooksList()   Pass!
-	//ArrayList<Books> aList = null;
-	//aList = BookDao.getBooksList(con);
-				 
+//	ArrayList<Books> aList = null;
+//	aList = BookDao.getBooksList(con);
+//				 
 //	for(Books aBook : aList) {
 //		System.out.println(aBook.getBookName());
 //	}
@@ -309,7 +324,7 @@ public class BookDao {
 //	int[] testArr = BookDao.getArrayOfID(con);
 //	for(int id : testArr) {
 //		System.out.println(id);
-//	}//Nov 26 
+//	}
 	
   
   }
