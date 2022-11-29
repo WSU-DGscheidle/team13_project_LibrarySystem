@@ -58,7 +58,7 @@ public class BookDao {
 	}
 	
     /**
-     * Borrow a book, givien an book id, it will update a couple data of a book in the database
+     * Borrow a book, given an book id, it will update a couple data of a book in the database
      * @param con
      * @param availableStatus
      * @param id
@@ -67,27 +67,50 @@ public class BookDao {
      * @throws Exception
      */
 	//URL:alvinalexander.com/java/java-mysql-update-query-example/
-	public static int borrowBook(Connection con,int availableStatus,String borrower,String borrowTime,int id)throws Exception{
-		String sql="update t_book set isAvailable = ?, lendTo = ?, borrowTime =? where bookID = ?";
+	public static int borrowBook(Connection con,int availableStatus,String borrower,String dueDay,int id)throws Exception{
+		String sql="update t_book set isAvailable = ?, lendTo = ?, dueDay =? where bookID = ?";
 		PreparedStatement pstmt=con.prepareStatement(sql);
 		pstmt.setInt(1, availableStatus);
 		pstmt.setString(2, borrower);
-		pstmt.setString(3, borrowTime);
+		pstmt.setString(3, dueDay);
 		pstmt.setInt(4, id);
 		return  pstmt.executeUpdate();
 		
 	}
 	
 	/**
-	 * Given a book's ID update the borrowTime info in the database
+	 * Return a book, given an book id, it will update a couple data of a book in the database
+	 * (set isAvailable to 1, set lendTo to null, set dueDay to null )
+	 * @param con
+	 * @param availableStatus
+	 * @param borrower
+	 * @param dueDay
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public static int returnBook(Connection con,int availableStatus,String borrower,String dueDay,int id)throws Exception{
+		String sql="update t_book set isAvailable = ?, lendTo = ?, dueDay =? where bookID = ?";
+		PreparedStatement pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, availableStatus);
+		pstmt.setString(2, borrower);
+		pstmt.setString(3, dueDay);
+		pstmt.setInt(4, id);
+		return  pstmt.executeUpdate();
+		
+	}
+	
+	
+	/**
+	 * Given a book's ID update the dueDay info in the database
 	 * @param con
 	 * @param time
 	 * @param id
 	 * @return 1:  success 0: fail  
 	 * @throws Exception
 	 */
-	public static int update_borrowTime(Connection con,String time,int id)throws Exception{
-		String sql="update t_book set borrowTime =? where bookID = ?";
+	public static int update_dueDay(Connection con,String time,int id)throws Exception{
+		String sql="update t_book set dueDay =? where bookID = ?";
 		PreparedStatement pstmt=con.prepareStatement(sql);
 		pstmt.setString(1, time);
 		pstmt.setInt(2, id);
@@ -137,7 +160,7 @@ public class BookDao {
 			resultBook.setBookID(rs.getInt("bookID"));
 			resultBook.setBookName(rs.getString("bookName"));
 			resultBook.setAvailable(rs.getInt("isAvailable"));
-			resultBook.setBorrowTime(rs.getString("borrowTime"));
+			resultBook.setdueDay(rs.getString("dueDay"));
 			resultBook.setLendTo(rs.getString("lendTo"));
 		}
 		
@@ -145,10 +168,12 @@ public class BookDao {
 		return resultBook;
 	}
 	
-	/**
-	 * Return a list of all books in the database
-	 * @throws Exception
-	 */
+    /**
+     * Return a list of all books in the database
+     * @param con
+     * @return a list
+     * @throws Exception
+     */
 	public static ArrayList<Books> getBooksList(Connection con) throws Exception    {
 	    ArrayList<Books> booksList = new ArrayList<Books>();
 	     
@@ -168,6 +193,7 @@ public class BookDao {
 	 * Given bookID,return an array of strings that show the information of one book
 	 * @param con 
 	 * @param int bookID
+	 * @return array of strings
 	 * @throws Exception
 	 */
 	public static Object[] getArrayOfOneBook(Connection con,int bookID) throws Exception    {
@@ -175,18 +201,44 @@ public class BookDao {
 	    Books aBook =  BookDao.returnBook(con, bookID); 
 	    
         Object[] arr;         
-        arr = new Object[5]; //5 columns is fixed: bookID,bookName,isAvailable,lendTo,borrowTime
+        arr = new Object[5]; //5 columns is fixed: bookID,bookName,isAvailable,lendTo,dueDay
 	    
         arr[0]=aBook.getBookID(); 
         arr[1]=aBook.getBookName();
         arr[2]=aBook.getAvailable();
         arr[3]=aBook.getLendTo();
-        arr[4]=aBook.getBorrowTime();
+        arr[4]=aBook.getdueDay();
 	    
 	    return arr;
 
 	   
 	}
+	
+    /**
+     * Return an array of all ID of books in the database
+     * @param con
+     * @return array
+     * @throws Exception
+     */
+	public static int[] getArrayOfID(Connection con) throws Exception    {
+	    
+		ArrayList<Books> booksList = BookDao.getBooksList(con);
+		
+		int totalNum  = BookDao.getTotalNum(con);
+		
+		int[] idArray;
+		
+		idArray = new int[totalNum];
+		
+		for(int i=0;i<totalNum;i++) {
+			idArray[i] = booksList.get(i).getBookID();
+		}	    
+		
+	    return idArray;
+	   
+	}
+	
+	
 	
 	/**
 	 * Given a book name,return total quantity of the books in the t_book table from the database
@@ -223,7 +275,7 @@ public class BookDao {
 	//Test: update_isAvailable Pass!
 	//System.out.println("update_isAvailable success ? " + BookDao.update_isAvailable( con,0,"Harry Potter 1")  );
 	
-	//Test: borrowBook(Connection con,int availableStatus,String borrower,String borrowTime,int id)
+	//Test: borrowBook(Connection con,int availableStatus,String borrower,String dueDay,int id)
 	//System.out.println( borrowBook(con,0,"Lucy","9/9/22",21)  );
 	
     //Test: add(Connection con,Books book)  Pass!
@@ -250,8 +302,16 @@ public class BookDao {
 	//Test: getBookQuantity(Connection con,String name) Pass!
    //System.out.println(BookDao.getBookQuantity(con,"Harry Potter 1"));
 	
-	//Test: update_borrowTime(Connection con,String time,int id)
-   //System.out.println(BookDao.update_borrowTime(con,"8/8/19",16));
+	//Test: update_dueDay(Connection con,String time,int id)
+   //System.out.println(BookDao.update_dueDay(con,"8/8/19",16));
+	
+	//Test: int[] getArrayOfID(Connection con) Pass!
+//	int[] testArr = BookDao.getArrayOfID(con);
+//	for(int id : testArr) {
+//		System.out.println(id);
+//	}//Nov 26 
+	
   
   }
 	
+}
