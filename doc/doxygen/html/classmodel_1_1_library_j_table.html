@@ -106,9 +106,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa72cfa74b9f988a769759e66983990e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_1_1_library_j_table.html#aa72cfa74b9f988a769759e66983990e1">LibraryJTable</a> (TableModel dm, TableColumnModel cm, ListSelectionModel sm)</td></tr>
 <tr class="separator:aa72cfa74b9f988a769759e66983990e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88fc4cbdd1a2c44f4265417e51a6c0d0"><td class="memItemLeft" align="right" valign="top">Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_1_1_library_j_table.html#a88fc4cbdd1a2c44f4265417e51a6c0d0">getColumnClass</a> (int column)</td></tr>
+<tr class="memdesc:a88fc4cbdd1a2c44f4265417e51a6c0d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overridden function that returns the class for the specified column This helps satisfy the requirements:  <a href="classmodel_1_1_library_j_table.html#a88fc4cbdd1a2c44f4265417e51a6c0d0">More...</a><br /></td></tr>
 <tr class="separator:a88fc4cbdd1a2c44f4265417e51a6c0d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49bf08528ed22041a3a40a9617e6ad65"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_1_1_library_j_table.html#a49bf08528ed22041a3a40a9617e6ad65">isCellEditable</a> (int row, int col)</td></tr>
-<tr class="memdesc:a49bf08528ed22041a3a40a9617e6ad65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows columns 3 and 4 (Available? and Borrower) to be editable while the others can't.  <a href="classmodel_1_1_library_j_table.html#a49bf08528ed22041a3a40a9617e6ad65">More...</a><br /></td></tr>
+<tr class="memdesc:a49bf08528ed22041a3a40a9617e6ad65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows columns 4 and 5 (Available? and Borrower) to be editable while the others can't This helps satisfy the following requirements:  <a href="classmodel_1_1_library_j_table.html#a49bf08528ed22041a3a40a9617e6ad65">More...</a><br /></td></tr>
 <tr class="separator:a49bf08528ed22041a3a40a9617e6ad65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -313,6 +314,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Overridden function that returns the class for the specified column This helps satisfy the requirements: </p>
+<ul>
+<li>There shall be check boxes next to the books to select and perform operations on the database</li>
+<li>There shall be buttons to add and delete books in the database </li>
+</ul>
+
 </div>
 </div>
 <a id="a49bf08528ed22041a3a40a9617e6ad65" name="a49bf08528ed22041a3a40a9617e6ad65"></a>
@@ -341,7 +348,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Allows columns 3 and 4 (Available? and Borrower) to be editable while the others can't. </p>
+<p>Allows columns 4 and 5 (Available? and Borrower) to be editable while the others can't This helps satisfy the following requirements: </p>
+<ul>
+<li>There shall be check boxes next to the books to select and perform operations on the database </li>
+</ul>
 
 </div>
 </div>

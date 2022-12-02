@@ -20,7 +20,8 @@ import utility_public.DataBaseUtility;
  * 
  * This class is the AddBookForm View Interface. <br>
  * This class contains a window that allows the user to add a book to the database <br>
- * 
+ * This class helps satisfy the following requirements:
+ * 	-There shall be buttons to add and delete books in the database
  * @author Skyler Gentner
  *
  */
