@@ -9,6 +9,11 @@ import javax.swing.table.TableModel;
 import dao.BookDao;
 import utility_public.DataBaseUtility;
 
+/**
+ * 
+ * @author Skyler Gentner
+ *
+ */
 public class LibraryTableCheckBoxModelListener implements TableModelListener {
 
 	@Override
