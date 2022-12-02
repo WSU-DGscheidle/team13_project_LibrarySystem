@@ -10,12 +10,20 @@ import dao.BookDao;
 import utility_public.DataBaseUtility;
 
 /**
+ * @class LibraryTableCheckBoxModelListener
+ * 
+ * This class listens to see if the checkbox inside of table is pressed <br>
+ * This class helps satisfy the following requirements:
+ * 	- There shall be check boxes next to the books to select and perform operations on the database
  * 
  * @author Skyler Gentner
- *
  */
 public class LibraryTableCheckBoxModelListener implements TableModelListener {
 
+	/**
+	 * Called when the table is changed in anyway <br>
+	 * However it only does anything when the checkbox column was changed
+	 */
 	@Override
 	public void tableChanged(TableModelEvent e) {
 		int row = e.getFirstRow();
