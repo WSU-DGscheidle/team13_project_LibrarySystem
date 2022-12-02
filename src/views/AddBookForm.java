@@ -15,6 +15,15 @@ import dao.BookDao;
 import model.Books;
 import utility_public.DataBaseUtility;
 
+/**
+ * @class AddBookForm
+ * 
+ * This class is the AddBookForm View Interface. <br>
+ * This class contains a window that allows the user to add a book to the database <br>
+ * 
+ * @author Skyler Gentner
+ *
+ */
 public class AddBookForm extends JFrame {
 
 	//Default serial version ID since this class extends JFrame
@@ -25,11 +34,19 @@ public class AddBookForm extends JFrame {
 	private JTextField textBookName, textBookAuthor;
 	private JLabel label, label_1, label_2;
 	
+	/**
+	 * Constructor<br>
+	 * Takes the tableModel that AdminView has and stores it so that it can be modified by the user
+	 * @param tableModel
+	 */
 	public AddBookForm(DefaultTableModel tableModel)
 	{
 		this.tableModel = tableModel;
 	}
-
+	
+	/**
+	 * This functions shows the AddBookForm and contains the functionality for the add book button which adds that book to the database
+	 */
 	public void showForm() {
 		frame1 = new JFrame("Add Book");
 		frame1.getContentPane().setLayout(new GridLayout(3, 2, 0, 0));
@@ -94,7 +111,7 @@ public class AddBookForm extends JFrame {
 		return tableModel;
 	}
 
-	public void setTable(DefaultTableModel tableModel) {
+	public void setTableModel(DefaultTableModel tableModel) {
 		this.tableModel = tableModel;
 	}
 
