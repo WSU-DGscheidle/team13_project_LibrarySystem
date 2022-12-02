@@ -21,39 +21,45 @@ public class LibraryJTable extends JTable {
     private static final long serialVersionUID = 1L;
 
 	public LibraryJTable() {
-		// TODO Auto-generated constructor stub
+		// Auto-generated constructor stub
 	}
 
 	public LibraryJTable(TableModel dm) {
 		super(dm);
-		// TODO Auto-generated constructor stub
+		// Auto-generated constructor stub
 	}
 
 	public LibraryJTable(TableModel dm, TableColumnModel cm) {
 		super(dm, cm);
-		// TODO Auto-generated constructor stub
+		// Auto-generated constructor stub
 	}
 
 	public LibraryJTable(int numRows, int numColumns) {
 		super(numRows, numColumns);
-		// TODO Auto-generated constructor stub
+		// Auto-generated constructor stub
 	}
 
 	public LibraryJTable(Vector<? extends Vector<?>> rowData, Vector<?> columnNames) {
 		super(rowData, columnNames);
-		// TODO Auto-generated constructor stub
+		// Auto-generated constructor stub
 	}
 
 	public LibraryJTable(Object[][] rowData, Object[] columnNames) {
 		super(rowData, columnNames);
-		// TODO Auto-generated constructor stub
+		// Auto-generated constructor stub
 	}
 
 	public LibraryJTable(TableModel dm, TableColumnModel cm, ListSelectionModel sm) {
 		super(dm, cm, sm);
-		// TODO Auto-generated constructor stub
+		// Auto-generated constructor stub
 	}
     
+	/**
+	 * Overridden function that returns the class for the specified column
+	 * This helps satisfy the requirements:
+	 * 	- There shall be check boxes next to the books to select and perform operations on the database
+	 * 	- There shall be buttons to add and delete books in the database
+	 */
     @Override
     public Class<?> getColumnClass(int column) {
         switch (column) {
@@ -77,7 +83,9 @@ public class LibraryJTable extends JTable {
     }
     
     /**
-     * Allows columns 3 and 4 (Available? and Borrower) to be editable while the others can't
+     * Allows columns 4 and 5 (Available? and Borrower) to be editable while the others can't
+     * This helps satisfy the following requirements:
+     * 	- There shall be check boxes next to the books to select and perform operations on the database
      */
     @Override
     public boolean isCellEditable(int row, int col) {

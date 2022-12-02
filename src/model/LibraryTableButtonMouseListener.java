@@ -6,6 +6,14 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
+/**
+ * @class LibraryTableButtonMouseListener
+ * 
+ * MouseListener that checks for when the mouse was clicked overtop of the table <br>
+ * This class helps satisfy the following requirements:
+ * 	- There shall be buttons to add and delete books in the database
+ * @author Skyler Gentner
+ */
 public class LibraryTableButtonMouseListener implements MouseListener {
 	private final JTable table;
 
