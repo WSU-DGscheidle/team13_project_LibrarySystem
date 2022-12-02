@@ -79,36 +79,51 @@ $(function() {
   <div class="headertitle"><div class="title">dao.BookDao Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>The purpose of this class is to assist UserView and AdminView in communicating with the online MySQL database and manipulating data within the database.  
+ <a href="classdao_1_1_book_dao.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a8e21ff4bb2ea228576f3a86e11cbaa"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a1a8e21ff4bb2ea228576f3a86e11cbaa">add</a> (Connection con, <a class="el" href="classmodel_1_1_books.html">Books</a> book)  throws Exception</td></tr>
+<tr class="memdesc:a1a8e21ff4bb2ea228576f3a86e11cbaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a book to the database.  <a href="classdao_1_1_book_dao.html#a1a8e21ff4bb2ea228576f3a86e11cbaa">More...</a><br /></td></tr>
 <tr class="separator:a1a8e21ff4bb2ea228576f3a86e11cbaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cebb5de45b205893bed972e2780302d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a4cebb5de45b205893bed972e2780302d">delete_byID</a> (Connection con, int id)  throws Exception</td></tr>
+<tr class="memdesc:a4cebb5de45b205893bed972e2780302d"><td class="mdescLeft">&#160;</td><td class="mdescRight">delete a book from the database by passing bookId as parameter  <a href="classdao_1_1_book_dao.html#a4cebb5de45b205893bed972e2780302d">More...</a><br /></td></tr>
 <tr class="separator:a4cebb5de45b205893bed972e2780302d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9d74b87e1b40aa8acc0c803a1e22aae"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#aa9d74b87e1b40aa8acc0c803a1e22aae">borrowBook</a> (Connection con, int availableStatus, String borrower, String dueDay, int id)  throws Exception</td></tr>
+<tr class="memdesc:aa9d74b87e1b40aa8acc0c803a1e22aae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Borrow a book, given an book id, it will update a couple data of a book in the database.  <a href="classdao_1_1_book_dao.html#aa9d74b87e1b40aa8acc0c803a1e22aae">More...</a><br /></td></tr>
 <tr class="separator:aa9d74b87e1b40aa8acc0c803a1e22aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49ca43a4e84a764cfd097de2ed12031b"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a49ca43a4e84a764cfd097de2ed12031b">returnBook</a> (Connection con, int availableStatus, String borrower, String dueDay, int id)  throws Exception</td></tr>
+<tr class="memdesc:a49ca43a4e84a764cfd097de2ed12031b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a book, given an book id, it will update a couple data of a book in the database (set isAvailable to 1, set lendTo to null, set dueDay to null )  <a href="classdao_1_1_book_dao.html#a49ca43a4e84a764cfd097de2ed12031b">More...</a><br /></td></tr>
 <tr class="separator:a49ca43a4e84a764cfd097de2ed12031b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99e5203ecd4f6f0e50039893c0e12173"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a99e5203ecd4f6f0e50039893c0e12173">update_dueDay</a> (Connection con, String time, int id)  throws Exception</td></tr>
+<tr class="memdesc:a99e5203ecd4f6f0e50039893c0e12173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a book's ID update the dueDay info in the database.  <a href="classdao_1_1_book_dao.html#a99e5203ecd4f6f0e50039893c0e12173">More...</a><br /></td></tr>
 <tr class="separator:a99e5203ecd4f6f0e50039893c0e12173"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a741c66d483163348105309775519bf38"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a741c66d483163348105309775519bf38">getTotalNum</a> (Connection con)  throws Exception</td></tr>
+<tr class="memdesc:a741c66d483163348105309775519bf38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return total numbers of books in the t_book table in the database.  <a href="classdao_1_1_book_dao.html#a741c66d483163348105309775519bf38">More...</a><br /></td></tr>
 <tr class="separator:a741c66d483163348105309775519bf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4eca37bc1827b15fef74f868e25a704d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmodel_1_1_books.html">Books</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a4eca37bc1827b15fef74f868e25a704d">returnBook</a> (Connection con, int id)  throws Exception</td></tr>
+<tr class="memdesc:a4eca37bc1827b15fef74f868e25a704d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a book instance by given book id.  <a href="classdao_1_1_book_dao.html#a4eca37bc1827b15fef74f868e25a704d">More...</a><br /></td></tr>
 <tr class="separator:a4eca37bc1827b15fef74f868e25a704d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c202ceff36c120fab3e20a6a540347c"><td class="memItemLeft" align="right" valign="top">static ArrayList&lt; <a class="el" href="classmodel_1_1_books.html">Books</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a5c202ceff36c120fab3e20a6a540347c">getBooksList</a> (Connection con)  throws Exception    </td></tr>
+<tr class="memdesc:a5c202ceff36c120fab3e20a6a540347c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a list of all books in the database.  <a href="classdao_1_1_book_dao.html#a5c202ceff36c120fab3e20a6a540347c">More...</a><br /></td></tr>
 <tr class="separator:a5c202ceff36c120fab3e20a6a540347c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52f691973a9773d58cb2348cb49605f1"><td class="memItemLeft" align="right" valign="top">static Object[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a52f691973a9773d58cb2348cb49605f1">getArrayOfOneBook</a> (Connection con, int bookID)  throws Exception    </td></tr>
+<tr class="memdesc:a52f691973a9773d58cb2348cb49605f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given bookID,return an array of strings that show the information of one book.  <a href="classdao_1_1_book_dao.html#a52f691973a9773d58cb2348cb49605f1">More...</a><br /></td></tr>
 <tr class="separator:a52f691973a9773d58cb2348cb49605f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a428e3906f6d0e6c905f1f7a9a8f1334a"><td class="memItemLeft" align="right" valign="top">static int[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#a428e3906f6d0e6c905f1f7a9a8f1334a">getArrayOfID</a> (Connection con)  throws Exception    </td></tr>
+<tr class="memdesc:a428e3906f6d0e6c905f1f7a9a8f1334a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return an array of all ID of books in the database.  <a href="classdao_1_1_book_dao.html#a428e3906f6d0e6c905f1f7a9a8f1334a">More...</a><br /></td></tr>
 <tr class="separator:a428e3906f6d0e6c905f1f7a9a8f1334a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afda06b8f3c0508338b0e258ad18c0250"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#afda06b8f3c0508338b0e258ad18c0250">getBookQuantity</a> (Connection con, String name)  throws Exception</td></tr>
+<tr class="memdesc:afda06b8f3c0508338b0e258ad18c0250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a book name,return total quantity of the books in the t_book table from the database.  <a href="classdao_1_1_book_dao.html#afda06b8f3c0508338b0e258ad18c0250">More...</a><br /></td></tr>
 <tr class="separator:afda06b8f3c0508338b0e258ad18c0250"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad378a25086e839559c8a295ef1463fca"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdao_1_1_book_dao.html#ad378a25086e839559c8a295ef1463fca">main</a> (String[] args)  throws Exception </td></tr>
 <tr class="separator:ad378a25086e839559c8a295ef1463fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >The purpose of this class is to assist UserView and AdminView in communicating with the online MySQL database and manipulating data within the database. </p><dl class="section author"><dt>Author</dt><dd>Caihong </dd></dl>
+<div class="textblock"><p >The purpose of this class is to assist UserView and AdminView in communicating with the online MySQL database and manipulating data within the database. </p>
+<dl class="section author"><dt>Author</dt><dd>Caihong </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1a8e21ff4bb2ea228576f3a86e11cbaa" name="a1a8e21ff4bb2ea228576f3a86e11cbaa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1a8e21ff4bb2ea228576f3a86e11cbaa">&#9670;&#160;</a></span>add()</h2>
@@ -143,7 +158,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Add a book to the database </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Add a book to the database. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
     <tr><td class="paramname">book</td><td></td></tr>
@@ -212,7 +229,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Borrow a book, given an book id, it will update a couple data of a book in the database </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Borrow a book, given an book id, it will update a couple data of a book in the database. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
     <tr><td class="paramname">availableStatus</td><td></td></tr>
@@ -264,7 +283,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >delete a book from the database by passing bookId as parameter </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>delete a book from the database by passing bookId as parameter </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
     <tr><td class="paramname">id</td><td></td></tr>
@@ -305,7 +326,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Return an array of all ID of books in the database </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Return an array of all ID of books in the database. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
   </table>
@@ -354,7 +377,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Given bookID,return an array of strings that show the information of one book </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Given bookID,return an array of strings that show the information of one book. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
     <tr><td class="paramname">int</td><td>bookID </td></tr>
@@ -404,7 +429,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Given a book name,return total quantity of the books in the t_book table from the database </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Given a book name,return total quantity of the books in the t_book table from the database. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
   </table>
@@ -443,7 +470,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Return a list of all books in the database </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Return a list of all books in the database. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
   </table>
@@ -482,7 +511,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Return total numbers of books in the t_book table in the database </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Return total numbers of books in the t_book table in the database. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
   </table>
@@ -575,7 +606,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Return a book, given an book id, it will update a couple data of a book in the database (set isAvailable to 1, set lendTo to null, set dueDay to null ) </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Return a book, given an book id, it will update a couple data of a book in the database (set isAvailable to 1, set lendTo to null, set dueDay to null ) </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
     <tr><td class="paramname">availableStatus</td><td></td></tr>
@@ -628,7 +661,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Return a book instance by given book id </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Return a book instance by given book id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
     <tr><td class="paramname">id</td><td></td></tr>
@@ -684,7 +719,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Given a book's ID update the dueDay info in the database </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Given a book's ID update the dueDay info in the database. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">con</td><td></td></tr>
     <tr><td class="paramname">time</td><td></td></tr>

@@ -1,8 +1,12 @@
+/**
+ * @file AdminView.java
+ */
 package views;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +18,7 @@ import javax.swing.table.TableCellRenderer;
 
 import dao.BookDao;
 import model.LibraryTableCheckBoxModelListener;
+import model.Books;
 import model.LibraryJTable;
 import model.LibraryJTableButtonRenderer;
 import model.LibraryTableButtonMouseListener;
@@ -23,14 +28,16 @@ import java.awt.event.ActionListener;
 
 /**
  * @class AdminView
- * This Class is the Administrator View Interface. 
- * It display the list of all books in the library after the Administrator login in.
- * It allows the Administrator to add,delete and edit book's information.
- *
+ * This Class is the Administrator View Interface. <br>
+ * It display's the list of all books in the library after the Administrator logs in. <br>
+ * It allows the Administrator to add, delete, and edit any book's information.
  * @author Skyler Gentner
  * 
  */
 public class AdminView extends JFrame {
+	/**
+	 * Default Constructor
+	 */
 	public AdminView() {
 	}
 
@@ -43,13 +50,18 @@ public class AdminView extends JFrame {
     Connection con;
     String ids;
     static JTable table;
-    String[] columnNames = {"Book ID", "Book Name", "Author", "Quantity", "Availabile?", "Borrower", "Delete Book"};
+    String[] columnNames = {"Book ID", "Book Name", "Author", "Quantity", "Availabile?", "Borrower", "Delete Book"}; 
     String from;
     
+    /**
+     * Called when the Add Book button is pressed <br>
+     * This will open the AddBookForm.java
+     * @param ae
+     */
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == b1) {
             try {
-				showTableData();
+            	makeViewWindow();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -57,7 +69,17 @@ public class AdminView extends JFrame {
         }
     }
     
-    public void showTableData() throws Exception {
+    /**
+     * Makes the AdminView window <br>
+     * This function helps satisfy the following requirements: <br>
+     * 	- There shall be at least four columns displaying the database: Book name, Book ID, Book Availability, Borrower Username
+     * 	- There shall be check boxes next to the books to select and perform operations on the database
+     * 	- There shall be buttons to add and delete books in the database
+     * 	- There shall be a column displaying the available quantity of the books
+     * 	- Use the database information in the AdminView
+     * @throws Exception
+     */
+    public void makeViewWindow() throws Exception {
         frame1 = new JFrame("Admin View");
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame1.getContentPane().setLayout(new BorderLayout());
@@ -78,7 +100,7 @@ public class AdminView extends JFrame {
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         DataBaseUtility dbUtil = new DataBaseUtility(); 
     	con = dbUtil.getCon();
-    	
+
     	int[] ids = BookDao.getArrayOfID(con);
     	
     	for(int id : ids)
@@ -112,14 +134,19 @@ public class AdminView extends JFrame {
         table.getModel().addTableModelListener(new LibraryTableCheckBoxModelListener());
         table.addMouseListener(new LibraryTableButtonMouseListener(table));
         
-		    frame1.getContentPane().add(btnAddBook, BorderLayout.NORTH);
+		frame1.getContentPane().add(btnAddBook, BorderLayout.NORTH);
         frame1.getContentPane().add(scroll);
         frame1.setVisible(true);
         frame1.setSize(700, 300);
     }
     
+    /**
+     * Called to open the AdminView window
+     * @param args
+     * @throws Exception
+     */
     public static void main(String args[]) throws Exception {
-        new AdminView().showTableData();
+        new AdminView().makeViewWindow();
     }
 
 }
